@@ -10,5 +10,5 @@ import { HelloWorldComponent } from "./hello-world/hello-world.component";
     imports: [RouterOutlet, HelloWorldComponent]
 })
 export class AppComponent {
-  title = 'WebServiceEngFE';
+  title = 'Matchmakr';
 }
