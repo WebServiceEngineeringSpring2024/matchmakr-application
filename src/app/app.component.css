@@ -1,0 +1,38 @@
+.widgets-container {
+    height: 100%;
+}
+.current-page-container {
+    margin: 0.1rem 2.3rem 0rem 0rem;
+    box-sizing: border-box;
+    padding: 3.1rem 3.4rem;
+    width: 93.6rem;
+    height: 99.3rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.3625;
+    color: #ffffff;
+    font-family: Noto Sans;
+    white-space: nowrap;
+    background: linear-gradient(180deg, #043f4f -0%, #011128 6%);
+    border-radius: 2.4rem;
+    flex-shrink: 0;
+}
+.current-page-widgets-div {
+    box-sizing: border-box;
+    padding: .5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.persistent-ui-div {
+    overflow: hidden;
+    background-color: #000000;
+    width: 100vw;
+    height: 98vh;
+    display: flex;
+    float:inline-start;
+    align-items:stretch;
+    flex-direction: row;
+    
+}

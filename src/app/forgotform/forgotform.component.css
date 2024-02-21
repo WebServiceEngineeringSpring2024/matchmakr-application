@@ -1,0 +1,108 @@
+.forgot-div {
+    width: 100vw;
+    height: 99vh;
+    position: relative;
+    overflow: hidden;
+    background-color: #000000;
+  }
+  .forgot-backdrop {
+      width: 71%;
+      height: 100%;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      vertical-align: top;
+  }
+  .forgot-logo-div {
+      width: 30%;
+      height: 100%;
+      background-color: #011128;
+  }
+  .forgot-logo-img {
+      width: 100%;
+      height: auto;
+  }
+  .action-widget {
+      width: 30%;
+      height: 90%;
+      position: absolute;
+      left: 50%;
+      top: 5%;
+      overflow-x: hidden;
+      overflow-y: visible;
+      background: linear-gradient(180deg, #043f4f -0%, #011128 6%);
+      border-radius: 8px;
+      align-content: center;
+  }
+  .forgot-input-field {
+      padding-left: 10px;
+      box-sizing: border-box;
+      font-size: 0.8rem;
+      font-weight: 100;
+      line-height: 2;
+      margin-bottom: 15px;
+      color: #ffffff;
+      font-family: Noto Sans, 'Source Sans Pro';
+      white-space: nowrap;
+      border: solid 0.1rem #043f4f;
+      background-color: #000000;
+      border-radius: 0.3rem;
+      width: 80%;
+  }
+  .forgot-label {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3625;
+      margin: 12px;
+      color: #ffffff;
+      font-family: Noto Sans, 'Source Sans Pro';
+      white-space: nowrap;
+  }
+  .forgot-submit {
+      box-sizing: border-box;
+      width: 80%;
+      line-height: 2.2;
+      margin-top: 5px;
+      background-color: #043f4f;
+      color:#ffffff;
+      border-width: 0;
+      border-radius: 0.3rem;
+      padding: 0px;
+      font-family: Noto Sans, 'Source Sans Pro';
+      text-align: center;
+  }
+  .forgot-link {
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.3625;
+      color: #0f9dc4;
+      font-family: Noto Sans, 'Source Sans Pro';
+      white-space: nowrap;
+      display: grid;
+      margin-top: 15px;
+      margin-right: 20%;
+      padding: 0px;
+      text-align: center;
+  }
+  .forgot-form-container {
+      width: 100%;
+      margin: 30px;
+  }
+  .forgot-unmask {
+      margin-left: -25px;
+      object-fit: cover;
+      padding-top: 0px;
+      vertical-align: bottom;
+      padding-bottom: 1.2rem;
+      width: 1.2rem;
+      height: auto;
+  }
+  .forgot-submit-arrow {
+      margin-left: -40px;
+      object-fit: cover;
+      padding-top: 0px;
+      vertical-align: bottom;
+      padding-bottom: 0.35rem;
+      width: 1.2rem;
+      height: auto;
+  }

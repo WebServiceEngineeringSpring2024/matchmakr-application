@@ -1,0 +1,62 @@
+.friendswidget {
+  box-sizing: border-box;
+  padding: 1.3rem 1.8rem 43rem 1.7rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #043f4f -0%, #011128 10.5%);
+  border-radius: 2.4rem;
+  flex-shrink: 0;
+}
+.friendswidget-online-header {
+  margin: 0rem 0rem 1.1rem 0.7rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.3625;
+  color: #ffffff;
+  font-family: Noto Sans;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.friendswidget-offline-header {
+  margin: 0rem 0rem 0.9rem 0.7rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.3625;
+  color: #ffffff;
+  font-family: Noto Sans;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.friendswidget-title {
+  box-sizing: border-box;
+  padding-top: 0.6rem;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.3625;
+  color: #ffffff;
+  font-family: Noto Sans;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.friendswidget-icon {
+  margin: 0.1rem 1.5rem 0rem 0rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  object-fit: cover;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.friendswidget-header {
+    box-sizing: border-box;
+    padding-top: 0.6rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.3625;
+    color: #ffffff;
+    font-family: Noto Sans;
+    white-space: nowrap;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
