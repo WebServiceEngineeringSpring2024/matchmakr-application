@@ -20,10 +20,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Matchmakr');
   });
 
-  it('should render the Hello World component', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello World');
-  });
 });
