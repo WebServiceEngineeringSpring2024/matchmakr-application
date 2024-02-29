@@ -3,8 +3,31 @@
       <img class="friendswidget-icon" src="../assets/images/friends.png"/>
       <div class="friendswidget-title">Friends</div>
     </div>
-    <p class="friendswidget-online-header">0 online</p>
-    <!-- online friends ... -->
-    <p class="friendswidget-offline-header">Offline</p>
-    <app-friend/>
+    <p class="friendswidget-status-header">{{OnlineFriends.length}} online</p>
+    <div *ngFor="let onlineFriend of OnlineFriends">
+      <div class="friend-row" draggable="true">
+        <img class="friend-pfp" src="../assets/images/playerpfp-8rP.png"/>
+        <p class="friend-username">{{onlineFriend.name}}</p>
+        <button class="friend-action-button" id="report">
+            <img class="friend-action-icon" src="../assets/images/flag.png"/>
+        </button>
+        <button class="friend-action-button" id="message">
+            <img class="friend-action-icon" src="../assets/images/message.png"/>
+        </button>
+    </div>
+    </div>
+    <p class="friendswidget-status-header">Offline</p>
+    <div *ngFor="let offlineFriend of OfflineFriends">
+      <div class="friend-row" draggable="true">
+        <img class="friend-pfp" src="../assets/images/playerpfp-8rP.png"/>
+        <p class="friend-username">{{offlineFriend.name}}</p>
+        <button class="friend-action-button" id="report">
+            <img class="friend-action-icon" src="../assets/images/flag.png"/>
+        </button>
+        <button class="friend-action-button" id="message">
+            <img class="friend-action-icon" src="../assets/images/message.png"/>
+        </button>
+    </div>
+    <!-- Because we would use a ngFor loop for the friends list, the "friend" component is only needed for messing with the UI
+    <app-friend/> -->
 </div>

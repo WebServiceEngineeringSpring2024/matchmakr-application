@@ -1,0 +1,32 @@
+<div class="games-page-container">
+    <p class="game-section-header">Favorite Games</p>
+    <div class="game-cards-container" id="scrollbar-style">
+        <div *ngFor="let favGame of FavGames">
+            <div class="game-card">
+                <img class="game-banner" src="../assets/images/gamebanner1.png"/>
+                <p class="game-title">{{favGame.name}}</p>
+                <button class="join-button">
+                    <img class="join-next-arrow" src="../assets/images/next.png"/>
+                    <p class="join-button-text">Join a lobby</p>
+                </button>
+                <a class="game-more-info" href="linktogame">More info</a>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <p class="game-section-header">Recommended Games</p>
+    <p class="game-header-subtext">Based on games you’ve played</p>
+    <div class="game-cards-container" id="scrollbar-style">
+        <div *ngFor="let recGame of RecommendGames">
+            <div class="game-card">
+                <img class="game-banner" src="../assets/images/gamebanner1.png"/>
+                <p class="game-title">{{recGame.name}}</p>
+                <button class="join-button">
+                    <img class="join-next-arrow" src="../assets/images/next.png"/>
+                    <p class="join-button-text">Join a lobby</p>
+                </button>
+                <a class="game-more-info" href="linktogame">More info</a>
+            </div>
+        </div>
+    </div>
+</div>

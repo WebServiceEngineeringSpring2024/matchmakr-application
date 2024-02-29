@@ -1,26 +1,16 @@
 .friendswidget {
   box-sizing: border-box;
-  padding: 1.3rem 1.8rem 43rem 1.7rem;
+  padding: 0.7rem 0.9rem 21.5rem 0.8rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #043f4f -0%, #011128 10.5%);
-  border-radius: 2.4rem;
+  border-radius: 1.2rem;
   flex-shrink: 0;
 }
-.friendswidget-online-header {
-  margin: 0rem 0rem 1.1rem 0.7rem;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.3625;
-  color: #ffffff;
-  font-family: Noto Sans;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.friendswidget-offline-header {
-  margin: 0rem 0rem 0.9rem 0.7rem;
-  font-size: 1.4rem;
+.friendswidget-status-header {
+  margin: 0.6rem 0rem 0.6rem 0.3rem;
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.3625;
   color: #ffffff;
@@ -30,8 +20,8 @@
 }
 .friendswidget-title {
   box-sizing: border-box;
-  padding-top: 0.6rem;
-  font-size: 2rem;
+  padding-top: 0.3rem;
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.3625;
   color: #ffffff;
@@ -40,9 +30,9 @@
   flex-shrink: 0;
 }
 .friendswidget-icon {
-  margin: 0.1rem 1.5rem 0rem 0rem;
-  width: 3.2rem;
-  height: 3.2rem;
+  margin: 0.1rem 0.7rem 0rem 0rem;
+  width: 1.6rem;
+  height: 1.6rem;
   object-fit: cover;
   vertical-align: top;
   flex-shrink: 0;
@@ -59,4 +49,48 @@
     display: flex;
     align-items: flex-start;
     flex-shrink: 0;
+}
+/*Below are styles for each friend in the lists of online/offline friends*/
+.friend-row {
+  margin-bottom: 1.4rem;
+  box-sizing: border-box;
+  padding: 0.2rem 0.4rem 0.2rem 0.3rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr 1fr;
+  background-color: #043f4f;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.friend-pfp {
+  margin-right: 0.3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  vertical-align: top;
+  flex-shrink: 0;
+  border-radius: 0.1rem;
+}
+.friend-username {
+  margin: 0.5rem 0.1rem 0rem 0rem;
+  font-size: 1.0rem;
+  font-weight: 400;
+  line-height: 1.3625;
+  color: #ffffff;
+  font-family: Noto Sans, 'Source Sans Pro';
+  vertical-align: middle;
+}
+.friend-action-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  object-fit: cover;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.friend-action-button {
+  background-color: #043f4f;
+  border-width: 0;
+  width: auto;
+  height: auto;
 }

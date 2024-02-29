@@ -1,0 +1,75 @@
+<div class="profile-container">
+<!--section 1 Header, username, edit btn -->
+<div class="profile-section">
+    <p class="profile-section-header no-margin">Profile</p>
+    <div class="horiz-flex">
+        <p class="profile-username">User1234</p>
+        <button class="edit-button">
+            <img class="profile-icon" src="../assets/images/pencil.png"/>
+        </button>
+    </div>
+</div>
+<!--section 2 Friend count, join date-->
+<div class="profile-section">
+    <div class="profile-inner-container">
+        <p class="profile-friendcount">
+        <span>2 friends, </span>
+        <span class="friendcount-sub-1">1 online</span>
+        </p>
+        <p class="profile-label-text left-margin">Joined 2/8/2024</p>
+    </div>
+</div>
+<!--section 3 Hours played count, Recently played list of games-->
+<div class="profile-section">
+    <p class="profile-label-text">19 hours played past 2 weeks</p>
+    <p class="profile-section-header bottom-margin">Recently played</p>
+    <div class="recently-played-games">
+        <div class="game-cards-container" id="scrollbar-style">
+            <div *ngFor="let recGame of RecentGames">
+                <div class="game-card">
+                    <img class="game-banner" src="../assets/images/gamebanner1.png"/>
+                    <p class="game-title">{{recGame.name}}</p>
+                    <button class="join-button">
+                        <img class="join-next-arrow" src="../assets/images/next.png"/>
+                        <p class="join-button-text">Join a lobby</p>
+                    </button>
+                    <a class="game-more-info" href="linktogame">More info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--section 4 Player stats-->
+<div class="profile-section">
+    <p class="profile-section-header top-margin">My statistics</p>
+    <p class="profile-label-text no-margin">This data is used to find other players in lobbies, and is only visible to you.</p>
+    <div class="profile-inner-container top-margin">
+        <div class="auto-group-mnax-6eX">
+        <div class="horiz-flex">
+            <img class="profile-icon" src="../assets/images/pin.png"/>
+            <p class="personality-label">Hiram, Georgia, US</p>
+        </div>
+        <div class="horiz-flex">
+            <img class="profile-icon" src="../assets/images/computer.png"/>
+            <p class="personality-label">Windows 10 - DirectX12 - 6 CPUs - 16 GB RAM - AMD Radeon Graphics</p>
+        </div>
+        <div class="horiz-flex">
+            <img class="profile-icon" src="../assets/images/brain.png"/>
+            <p class="personality-label">Ambitious, Generous, Adventurous, Funny, Adaptable, Affectionate, Confident</p>
+        </div>
+        <div class="horiz-flex">
+            <img class="profile-icon" src="../assets/images/globe.png"/>
+            <p class="personality-label">English - US</p>
+        </div>
+        <div class="horiz-flex">
+            <img class="profile-icon" src="../assets/images/calendar.png"/>
+            <p class="personality-label">Weekend gamer</p>
+        </div>
+        <div class="horiz-flex">
+            <img class="profile-icon" src="../assets/images/controller.png"/>
+            <a class="link-color" href="link">See game specific statistics</a>
+        </div>
+        </div>
+    </div>
+</div>
+</div>

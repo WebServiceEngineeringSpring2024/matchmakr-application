@@ -1,24 +1,16 @@
-<!-- Signed out-->
-<app-forgotform/>
 
-<!-- Signed in->
-<h1>
-  <div class="persistent-ui-div">
-    <!-- sidebar ->
-    <app-sidebar/>
-    
-    <div class="current-page-widgets-div">
-      <!-- current page ->
-      <div class="current-page-container">
-        <!-- insert components here ->
-        <p>Current page</p>
-      </div>
-      <!-- sidebar widgets ->
-      <div class="widgets-container">
-        <app-party/>
-        <app-friendslist/>
-      </div>
-    </div>
+<div class="persistent-ui-div">
+  <!-- sidebar -->
+  <app-sidebar/>
+
+  <div class="current-page-container">
+    <!--Insert current page component here (e.g. search, games, profile, settings) -->
+    <app-profile/>
   </div>
-</h1>
-<!---->
+  <!-- sidebar widgets -->
+  <div class="widgets-container">
+    <app-party/>
+    <app-friendslist/>
+  </div>
+
+</div>
