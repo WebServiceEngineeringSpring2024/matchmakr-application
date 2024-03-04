@@ -4,9 +4,6 @@
 
 name: Node.js CI
 
-env:
-  AZURE_WEBAPP_PACKAGE_PATH: release.zip
-
 on:
   push:
   workflow_dispatch: # allows manual execution of the workflow
@@ -18,8 +15,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: src
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -41,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+          path: release.zip
 
   deploy:
     # if: github.ref_name == 'main'
@@ -58,6 +53,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-app
+          path: release.zip
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -65,7 +61,7 @@ jobs:
         with:
           app-name: ${{vars.WEBAPP_NAME}}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+          package: .
 #
 #           # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # # More GitHub Actions for Azure: https://github.com/Azure/actions
