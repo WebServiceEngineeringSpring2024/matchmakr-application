@@ -1,0 +1,33 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests
+# Then it will save the build artifacts and deploy to Azure Web App
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+  workflow_dispatch: # allows manual execution of the workflow
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{vars.NODE_VERSION}}
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Run tests
+        run: npm test

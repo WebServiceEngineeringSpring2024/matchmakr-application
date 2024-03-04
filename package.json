@@ -1,5 +1,5 @@
 {
-  "name": "web-service-eng-fe",
+  "name": "matchmakr-application",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:WebServiceEngFE": "node dist/web-service-eng-fe/server/server.mjs"
+    "serve:ssr:matchmakr-application": "node dist/matchmakr-application/server/server.mjs"
   },
   "private": true,
   "dependencies": {
