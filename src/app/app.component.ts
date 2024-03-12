@@ -26,6 +26,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title = "Matchmakr";
   signedIn: boolean;
   constructor() {
     this.signedIn = false;
