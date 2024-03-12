@@ -22,3 +22,6 @@
     background: linear-gradient(180deg, #043f4f -0%, #011128 6%);
     border-radius: 1.2rem;
 }
+.container {
+    margin: 5px;
+}

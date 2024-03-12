@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+//import { RouterModule } from '@angular/router';
 import { PartyComponent } from './party/party.component';
 import { FriendslistComponent } from './friendslist/friendslist.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -11,16 +13,22 @@ import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GamesComponent } from './games/games.component';
 import { SettingsComponent } from './settings/settings.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 // Be sure to import components above here...
 
 @Component({
   selector: 'app-root',
   standalone: true,
   // ... and in the array here.
-  imports: [RouterOutlet, PartyComponent, FriendslistComponent, SidebarComponent, LoginformComponent, SignupformComponent, ForgotformComponent, EntercodeformComponent, SearchComponent, ProfileComponent, GamesComponent, SettingsComponent ],
+  imports: [ CommonModule, RouterOutlet, PartyComponent, FriendslistComponent, SidebarComponent, LoginformComponent, SignupformComponent, ForgotformComponent, EntercodeformComponent, SearchComponent, ProfileComponent, GamesComponent, SettingsComponent, QuizComponent, PagenotfoundComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Matchmakr';
+  title = "Matchmakr";
+  signedIn: boolean;
+  constructor() {
+    this.signedIn = false;
+  }
 }
