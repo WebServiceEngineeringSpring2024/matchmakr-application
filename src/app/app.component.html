@@ -1,16 +1,17 @@
-
-<div class="persistent-ui-div">
-  <!-- sidebar -->
-  <app-sidebar/>
-
-  <div class="current-page-container">
-    <!--Insert current page component here (e.g. search, games, profile, settings) -->
-    <app-profile/>
+<div *ngIf="signedIn; else signed_out">
+  <div class="persistent-ui-div">
+    <app-sidebar/>
+    <div class="current-page-container">
+      <!-- The routed views render in the <router-outlet>-->
+      <router-outlet></router-outlet>
+    </div>
+    <!-- sidebar widgets -->
+    <div class="widgets-container">
+      <app-party/>
+      <app-friendslist/>
+    </div>
   </div>
-  <!-- sidebar widgets -->
-  <div class="widgets-container">
-    <app-party/>
-    <app-friendslist/>
-  </div>
-
 </div>
+<ng-template #signed_out>
+  <router-outlet></router-outlet>
+</ng-template>

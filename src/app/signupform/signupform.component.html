@@ -9,19 +9,29 @@
         <br/>
         <p class="signup-label">Sign up to get started!</p>
         <form>
-          <input class="signup-input-field" type="text" id="email" name="email" placeholder="Email">
-          <br/>
-          <input class="signup-input-field" type="password" id="password" name="password" placeholder="Password">
-          <img class="signup-unmask" src="../assets/images/eye.png" alt="Show password"/>
-          <br/>
-          <input class="signup-input-field" type="password" id="confirm" name="confirm" placeholder="Confirm">
-          <img class="signup-unmask" src="../assets/images/eye.png" alt="Show password"/>
-          <br/>
-          <input class="signup-submit" type="submit" value="Sign up">
-          <img class="signup-submit-arrow" src="../assets/images/next.png" alt=""/>
+          <input class="signup-input-field" type="text" id="email" name="email" [(ngModel)]="email" placeholder="Email">
+          <!--password-->
+          <input class="signup-input-field" type="password" id="password" name="password" [(ngModel)]="password" [hidden]="passwordUnmask" placeholder="Password">
+          <a (click)="onUnmaskClick()">
+            <img class="signup-unmask" src="../assets/images/eye.png" alt="Show password" (click)="onUnmaskClick()"/>
+          </a>
+          <!--"unmask" password-->
+          <input class="signup-input-field" type="text" name="password" [(ngModel)]="password" [hidden]="!passwordUnmask">
+          <!--confirm password-->
+          <input class="signup-input-field" type="password" id="confirm" name="confirm" [(ngModel)]="confirm" [hidden]="passwordUnmask" placeholder="Confirm">
+          <a (click)="onUnmaskClick()">
+            <img class="signup-unmask" src="../assets/images/eye.png" alt="Show password"/>
+          </a>
+          <!--"unmask" confirm password-->
+          <input class="signup-input-field" type="text" name="confirm" [(ngModel)]="confirm" [hidden]="!passwordUnmask">
+          <a [routerLink]="" (click)="onSignUpClick()">
+            <input class="signup-submit" type="button" value="Sign up">
+            <img class="signup-submit-arrow" src="../assets/images/next.png" alt=""/>
+          </a>
         </form>
-        <a class="signup-link" href="link">Log in</a>
-        <a class="signup-link" href="link">Forgot password?</a>  
+        <a class="signup-link" href="login">Log in{{email}}</a>
+        <a class="signup-link" href="forgot">Forgot password?</a>  
+        <p class="signup-error-text" [hidden]="!showErrorMsg">ERROR: {{errorMsg}} </p>
       </div>
     </div>
   </div>
