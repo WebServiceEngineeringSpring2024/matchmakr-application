@@ -18,19 +18,19 @@ import { ResolveFn } from '@angular/router';
 
 export const routes: Routes = [
     // signed out & signing up
-{ path: 'login', component: LoginformComponent, data:{requiresLogin: true}  },
-{ path: 'signup', component: SignupformComponent },
-{ path: 'forgot', component: ForgotformComponent },
-{ path: 'enter', component: EntercodeformComponent },
-{ path: 'quiz', component: QuizComponent },
+{ path: 'login', title: 'Matchmakr', component: LoginformComponent, data:{requiresLogin: true}  },
+{ path: 'signup', title: 'Matchmakr', component: SignupformComponent },
+{ path: 'forgot', title: 'Matchmakr', component: ForgotformComponent },
+{ path: 'enter', title: 'Matchmakr', component: EntercodeformComponent },
+{ path: 'quiz', title: 'Matchmakr', component: QuizComponent },
 
 // signed in
-{ path: 'search', component: SearchComponent },
-{ path: 'profile', component: ProfileComponent },
-{ path: 'games', component: GamesComponent },
-{ path: 'settings', component: SettingsComponent },
+{ path: 'search', title: 'Matchmakr', component: SearchComponent },
+{ path: 'profile', title: 'Matchmakr', component: ProfileComponent },
+{ path: 'games', title: 'Matchmakr', component: GamesComponent },
+{ path: 'settings', title: 'Matchmakr', component: SettingsComponent },
 
 // "any other link" results in a 404 (This should be placed last)
-{ path: '**', component: PagenotfoundComponent }
+{ path: '**', title: 'Matchmakr', component: PagenotfoundComponent }
 ];
 

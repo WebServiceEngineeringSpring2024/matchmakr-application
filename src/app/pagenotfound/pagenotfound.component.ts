@@ -8,16 +8,5 @@ import { Component, HostListener } from '@angular/core';
   styleUrl: './pagenotfound.component.css'
 })
 export class PagenotfoundComponent {
-  constructor() {
-    console.log("f");
-  }
-  count = 0;
-  @HostListener('window:click', ['$event'])
-  test(event: Event) {
-    this.count ++;
-    console.log(event);
-  }
-  keyPress() {
-    console.log("key pressed");
-  }
+  
 }

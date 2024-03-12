@@ -21,7 +21,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   selector: 'app-root',
   standalone: true,
   // ... and in the array here.
-  imports: [CommonModule, RouterOutlet, PartyComponent, FriendslistComponent, SidebarComponent, LoginformComponent, SignupformComponent, ForgotformComponent, EntercodeformComponent, SearchComponent, ProfileComponent, GamesComponent, SettingsComponent, QuizComponent, PagenotfoundComponent ],
+  imports: [ CommonModule, RouterOutlet, PartyComponent, FriendslistComponent, SidebarComponent, LoginformComponent, SignupformComponent, ForgotformComponent, EntercodeformComponent, SearchComponent, ProfileComponent, GamesComponent, SettingsComponent, QuizComponent, PagenotfoundComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
