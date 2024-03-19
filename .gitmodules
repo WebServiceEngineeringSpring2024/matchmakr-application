@@ -1,0 +1,3 @@
+[submodule "matchmakr-docs"]
+	path = matchmakr-docs
+	url = git@github.com:WebServiceEngineeringSpring2024/matchmakr-docs.git
