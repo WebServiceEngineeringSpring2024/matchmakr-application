@@ -13,8 +13,9 @@ import { AuthService } from './services/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
+  title: string;
   constructor(private as: AuthService) {
+	title = "matchmakr-app";
   }
   isSignedIn() {
     return this.as.isUserSignedIn();
