@@ -94,13 +94,11 @@ export class AuthService {
           localStorage.setItem("session", Math.random().toString());
           localStorage.setItem("email", user.email);
         }
-        console.log("Register: " + user.email + " " + user.password + " success");
       },
       error: () => {
         //error
         result.next(false);
-        result.complete();
-        console.log("Register: " + user.email + " " + user.password + " failed");        
+        result.complete();    
       },
       complete: () => {
         // this is done regardless of success or error

@@ -1,5 +1,5 @@
 {
-  "name": "matchmakr-app",
+  "name": "matchmakr-application",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:matchmakr-app": "node dist/matchmakr-app/server/server.mjs"
+    "serve:ssr:matchmakr-application": "node dist/matchmakr-application/server/server.mjs"
   },
   "private": true,
   "dependencies": {

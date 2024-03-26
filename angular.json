@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "matchmakr-app": {
+    "matchmakr-application": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/matchmakr-app",
+            "outputPath": "dist/matchmakr-application",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "matchmakr-app:build:production"
+              "buildTarget": "matchmakr-application:build:production"
             },
             "development": {
-              "buildTarget": "matchmakr-app:build:development"
+              "buildTarget": "matchmakr-application:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "matchmakr-app:build"
+            "buildTarget": "matchmakr-application:build"
           }
         },
         "test": {
@@ -91,7 +91,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         }
       }
