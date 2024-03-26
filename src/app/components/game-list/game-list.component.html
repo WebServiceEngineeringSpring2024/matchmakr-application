@@ -1,19 +1,40 @@
 <h2>Game list</h2>
 <input type="text" placeholder="Filter games" #filter>
 <button (click)="Submit(filter.value)">Search</button>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <div *ngFor = "let game of games">
+<div *ngIf="!isFiltered">
+    <table>
+        <thead>
             <tr>
-                <td>{{game.id}}</td>
-                <td>{{game.name}}</td>
+                <th>ID</th>
+                <th>Name</th>
             </tr>
-        </div>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <div *ngFor = "let game of games">
+                <tr>
+                    <td>{{game.id}}</td>
+                    <td>{{game.name}}</td>
+                </tr>
+            </div>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="isFiltered">
+    <button (click)="Clear()">Clear filters</button>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div *ngFor = "let game of filterGames">
+                <tr>
+                    <td>{{game.id}}</td>
+                    <td>{{game.name}}</td>
+                </tr>
+            </div>
+        </tbody>
+    </table>
+</div>
