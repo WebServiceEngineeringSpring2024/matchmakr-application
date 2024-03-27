@@ -1,12 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-
-/* Noto Sans font */
-@font-face {
-    font-family: Noto Sans;
-    src: url(assets/fonts/NotoSans.ttf) format("truetype");
-}
-
-/*remove white border around window*/
-body {
-    margin: 0px;
-}

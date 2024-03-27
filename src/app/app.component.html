@@ -1,17 +1,21 @@
-<div *ngIf="signedIn; else signed_out">
-  <div class="persistent-ui-div">
-    <app-sidebar/>
-    <div class="current-page-container">
-      <!-- The routed views render in the <router-outlet>-->
-      <router-outlet></router-outlet>
+<h1>Hello, matchmakr-application</h1>
+<div>
+    <div *ngIf="isSignedIn()" class="navbar">
+        <p>Hello, {{getCurrentUserEmail()}}</p>
+        <div class="navbar-item">
+            <a href="/games" class="navbar-item-text">Games</a>
+        </div>
+        <div class="navbar-item">
+            <a href="/signout" class="navbar-item-text">Sign Out</a>
+        </div>
     </div>
-    <!-- sidebar widgets -->
-    <div class="widgets-container">
-      <app-party/>
-      <app-friendslist/>
+    <div *ngIf="!isSignedIn()" class="navbar">
+        <div class="navbar-item">
+            <a href="/users/login" class="navbar-item-text">Login</a>
+        </div>
+        <div class="navbar-item">
+            <a href="/users/register" class="navbar-item-text">Register</a>
+        </div>
     </div>
-  </div>
 </div>
-<ng-template #signed_out>
-  <router-outlet></router-outlet>
-</ng-template>
+<router-outlet></router-outlet>

@@ -1,0 +1,12 @@
+<form>
+    <label for="email"><b>Email</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required #l_email>
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required #l_username>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="At least 6 characters" name="password" required #l_password>
+    <label for="confirm"><b>Confirm</b></label>
+    <input type="password" placeholder="Confirm Password" name="confirm" required #l_confirm>
+</form>
+<button (click)="SubmitRegister(l_email.value, l_username.value, l_password.value, l_confirm.value)">Sign up</button>
+{{errorMsg}}
