@@ -44,7 +44,7 @@ export class RegisterComponent {
           if (data) {
             // register success
             this.errorMsg = "Register success!";
-            this.router.navigate(['games']);
+            this.router.navigate(['quiz']);
           }
           else {
             // register failed
