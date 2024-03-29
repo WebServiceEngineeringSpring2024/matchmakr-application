@@ -31,13 +31,49 @@ export class AuthService {
   }
   getCurrentUserEmail() {
     if (isPlatformBrowser(this.platformID)) {
-      return localStorage.getItem("email");
+      var d = localStorage.getItem("email");
+      if (!d) {
+        return null;
+      }
+      if ((d!.length * 1274321).toString()  == (localStorage.getItem("session"))) {
+        return d;
+      }
     }
     return null;
   }
   signOut() {
     if (isPlatformBrowser(this.platformID)) {
       localStorage.clear();
+    }
+  }
+  getUserByID(id: number): Observable<User> {
+    //getUserByID endpoint: /id/:id
+    if (!this.httpClient) {
+      return new Observable<User>();
+    }
+    else {
+      try {
+        return this.httpClient.get<User>(`${this.baseURL}/id/${id}`);
+      }
+      catch (err) {
+        console.log(err);
+        return new Observable<User>();
+      }
+    }
+  }
+  getUserByEmail(email: string): Observable<User> {
+    //getUserByName endpoint: /email/:name
+    if (!this.httpClient) {
+      return new Observable<User>();
+    }
+    else {
+      try {
+        return this.httpClient.get<User>(`${this.baseURL}/email/${email}`);
+      }
+      catch (err) {
+        console.log(err);
+        return new Observable<User>();
+      }
     }
   }
   // NOTE: Angular HTTP module always returns an Observable, which must be subscribed to or else nothing will happen.
@@ -56,7 +92,7 @@ export class AuthService {
           result.next(true);
           result.complete();
           if (isPlatformBrowser(this.platformID)) {
-            localStorage.setItem("session", Math.random().toString());
+            localStorage.setItem("session", (user.email.length * 1274321).toString());
             localStorage.setItem("email", user.email);
           }
           return result.asObservable();
@@ -82,7 +118,7 @@ export class AuthService {
     const result = new Subject<boolean>();
     // username, password and email are passed as a json object to backend
     this.httpClient.post(`${this.baseURL}/register`, {
-      "userName": user.username,
+      "userName": user.userName,
       "password": user.password,
       "email": user.email
     }).subscribe({
@@ -91,7 +127,7 @@ export class AuthService {
         result.next(true);
         result.complete();
         if (isPlatformBrowser(this.platformID)) {
-          localStorage.setItem("session", Math.random().toString());
+          localStorage.setItem("session", (user.email.length * 1274321).toString());
           localStorage.setItem("email", user.email);
         }
       },
