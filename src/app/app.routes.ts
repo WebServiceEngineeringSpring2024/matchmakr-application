@@ -6,6 +6,8 @@ import { authGuard } from './guards/auth.guard';
 import { signoutGuard}  from './guards/signout.guard';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { quizGuard } from './guards/quiz.guard';
+import { ProfileComponent } from './components/profile/profile.component';
+import { currentUserViewGuard } from './guards/current-user-view.guard';
 
 // routes for the web app go here
 export const routes: Routes = [
@@ -13,5 +15,7 @@ export const routes: Routes = [
     { path: 'users/register', component: RegisterComponent },
     { path: 'games', component: GameListComponent, canActivate: [authGuard] },
     { path: 'signout', component: LoginComponent, canActivate: [signoutGuard]},
-    { path: 'quiz', component: QuizComponent, canActivate: [quizGuard]}
+    { path: 'quiz', component: QuizComponent, canActivate: [quizGuard]},
+    { path: 'profile', component: ProfileComponent, canActivate: [currentUserViewGuard]},
+    { path: 'users/:id', component: ProfileComponent, data: {id: 0} }
 ];
