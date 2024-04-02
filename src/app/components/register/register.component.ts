@@ -50,15 +50,15 @@ export class RegisterComponent {
         return;
       }
       else {
-        let un: string, pw: string, cpw: string;
+        let un: string, pw: string, em: string;
         if (true) {
           un = userRegister.userName;
           pw = userRegister.password;
-          cpw = userRegister.confirmPassword;
+          em = userRegister.email;
           userRegister = new UserRegister('','','','');
         }
         // attempt to insert user
-        let newUser = new User(-1, un, pw, cpw, 0);
+        let newUser = new User(-1, un, pw, em, 0);
         this.as.register(newUser).subscribe((data) => {
           if (data) {
             // register success
