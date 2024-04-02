@@ -53,8 +53,8 @@ export const currentUserViewGuard: CanActivateFn = (route, state) => {
 function getEmailStored(platformID: Object) : string {
   var token: any;
   if (isPlatformBrowser(platformID)) {
-    if (localStorage.getItem("email")) {
-      token = decr(localStorage.getItem("email")!);
+    if (localStorage.getItem("e")) {
+      token = decr(localStorage.getItem("e")!);
     }
     else {
       token = '';

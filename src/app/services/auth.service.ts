@@ -31,8 +31,8 @@ export class AuthService {
   }
   getCurrentUserEmail() {
     if (isPlatformBrowser(this.platformID)) {
-      if (localStorage.getItem("email")) {
-        var d = this.decr(localStorage.getItem("email")!);
+      if (localStorage.getItem("e")) {
+        var d = this.decr(localStorage.getItem("e")!);
         if (!d) {
           return null;
         }
@@ -98,7 +98,8 @@ export class AuthService {
           result.complete();
           if (isPlatformBrowser(this.platformID)) {
             localStorage.setItem("session", (user.email.length * 1274321).toString());
-            localStorage.setItem("email", this.encr(user.email));
+            let encrypted = this.encr(user.email);
+            localStorage.setItem("e", encrypted);
           }
           return result.asObservable();
         },
@@ -133,7 +134,8 @@ export class AuthService {
         result.complete();
         if (isPlatformBrowser(this.platformID)) {
           localStorage.setItem("session", (user.email.length * 1274321).toString());
-          localStorage.setItem("email", this.encr(user.email));
+          let encrypted = this.encr(user.email);
+          localStorage.setItem("e", encrypted);
         }
       },
       error: () => {
