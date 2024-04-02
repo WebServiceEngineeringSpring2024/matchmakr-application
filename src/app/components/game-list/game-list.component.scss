@@ -1,0 +1,31 @@
+.mat-card {
+  background-color: white;
+  color: red;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Change this line */
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+}
+
+.card-button {
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+
+button.mat-button {
+  background-color: #0A1928;;
+  color: #0A1928;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+button.mat-button:hover {
+  background-color: #0056b3;
+}

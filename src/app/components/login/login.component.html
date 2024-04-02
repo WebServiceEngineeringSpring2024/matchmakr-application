@@ -1,8 +1,36 @@
-<form>
-    <label for="email"><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required #l_email>
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required #l_password>
+<!--<form>-->
+<!--    <label for="email"><b>Email</b></label>-->
+<!--    <input type="email" placeholder="Enter Email" name="email" required #l_email>-->
+<!--    <label for="password"><b>Password</b></label>-->
+<!--    <input type="password" placeholder="Enter Password" name="password" required #l_password>-->
+<!--</form>-->
+<!--<button (click)="SubmitLogin(l_email.value, l_password.value)">Login</button>-->
+<!--{{errorMsg}}-->
+<h1 style="text-align: center;">Welcome To MatchMakr</h1>
+<form [formGroup]="loginForm" (ngSubmit)="SubmitLogin()" autocomplete="new-password">
+  <h1>Login</h1>
+  <div class="form-control">
+    <label for="email">Email</label>
+    <input
+      formControlName="email"
+      id="email"
+      autocomplete="new-password"
+      type="email"/>
+  </div>
+  <div class="form-control">
+    <label for="password">Password</label>
+    <input
+      formControlName="password"
+      id="password"
+      autocomplete="new-password"
+      type="password"/>
+  </div>
+  <button mat-raised-button type="submit">Login</button>
+  <button  mat-raised-button (click)="goToRegister()">Register</button>
 </form>
-<button (click)="SubmitLogin(l_email.value, l_password.value)">Login</button>
-{{errorMsg}}
+<footer style="text-align: center; padding: 20px;">
+  <p>&copy; 2024 MatchMakr. All rights reserved.</p>
+</footer>
+
+
+

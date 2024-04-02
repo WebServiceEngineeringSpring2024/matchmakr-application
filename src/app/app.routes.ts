@@ -17,5 +17,5 @@ export const routes: Routes = [
     { path: 'signout', component: LoginComponent, canActivate: [signoutGuard]},
     { path: 'quiz', component: QuizComponent, canActivate: [quizGuard]},
     { path: 'profile', component: ProfileComponent, canActivate: [currentUserViewGuard]},
-    { path: 'users/:id', component: ProfileComponent, data: {id: 0} }
+    { path: 'users/:id', component: ProfileComponent, data: {id: 0} },
 ];
