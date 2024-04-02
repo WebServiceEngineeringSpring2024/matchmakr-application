@@ -38,7 +38,7 @@ export class PersonalityService {
     // make post request
     if (this.httpClient) {
       // We can change the format of the JSON body as needed
-      this.httpClient.post(`${this.baseURL}/personality`, {
+      this.httpClient.post(`${this.baseURL}/personalities/insert`, {
         "email": email,
         "aggression": aggression,
         "kindness": kindness,
