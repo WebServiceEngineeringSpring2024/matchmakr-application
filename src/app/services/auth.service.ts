@@ -31,12 +31,17 @@ export class AuthService {
   }
   getCurrentUserEmail() {
     if (isPlatformBrowser(this.platformID)) {
-      var d = localStorage.getItem("email");
-      if (!d) {
-        return null;
+      if (localStorage.getItem("e")) {
+        var d = this.decr(localStorage.getItem("e")!);
+        if (!d) {
+          return null;
+        }
+        if ((d!.length * 1274321).toString()  == (localStorage.getItem("session"))) {
+          return d;
+        }
       }
-      if ((d!.length * 1274321).toString()  == (localStorage.getItem("session"))) {
-        return d;
+      else {
+        return null;
       }
     }
     return null;
@@ -93,7 +98,8 @@ export class AuthService {
           result.complete();
           if (isPlatformBrowser(this.platformID)) {
             localStorage.setItem("session", (user.email.length * 1274321).toString());
-            localStorage.setItem("email", user.email);
+            let encrypted = this.encr(user.email);
+            localStorage.setItem("e", encrypted);
           }
           return result.asObservable();
         },
@@ -128,7 +134,8 @@ export class AuthService {
         result.complete();
         if (isPlatformBrowser(this.platformID)) {
           localStorage.setItem("session", (user.email.length * 1274321).toString());
-          localStorage.setItem("email", user.email);
+          let encrypted = this.encr(user.email);
+          localStorage.setItem("e", encrypted);
         }
       },
       error: () => {
@@ -163,4 +170,28 @@ export class AuthService {
     return result.asObservable();
   }
   
+  // encrypts a string
+  encr(str: string): string {
+    const encryptedChars = str.split('').map((char) => {
+      if (char.match(/[a-zA-Z]/)) {
+          const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+          const shiftedCharCode = (char.charCodeAt(0) - baseCharCode + 3) % 26 + baseCharCode;
+          return String.fromCharCode(shiftedCharCode);
+      }
+      return char; // Non-alphabetic characters remain unchanged
+    });
+    return encryptedChars.join('');
+  }
+  // decrypts a string
+  decr(str: string): string {
+    const decryptedChars = str.split('').map((char) => {
+      if (char.match(/[a-zA-Z]/)) {
+          const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+          const shiftedCharCode = (char.charCodeAt(0) - baseCharCode - 3 + 26) % 26 + baseCharCode;
+          return String.fromCharCode(shiftedCharCode);
+      }
+      return char; // Non-alphabetic characters remain unchanged
+  });
+  return decryptedChars.join('');
+  }
 }

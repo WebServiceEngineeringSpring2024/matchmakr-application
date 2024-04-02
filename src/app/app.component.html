@@ -1,26 +1,25 @@
-<h1>Hello, matchmakr-application</h1>
-<div>
-    <div *ngIf="isSignedIn(); else signedOut" class="navbar">
-        <p>Hello, {{getCurrentUserEmail()}}</p>
-        <div class="navbar-item">
-            <a href="/games" class="navbar-item-text">Games</a>
-        </div>
-        <div class="navbar-item">
-            <a href="/profile" class="navbar-item-text">Profile</a>
-        </div>
-        <div class="navbar-item">
-            <a href="/signout" class="navbar-item-text">Sign Out</a>
-        </div>
-    </div>
+<div class="navbar">
+    <div *ngIf="isSignedIn(); else signedOut">
+      <mat-toolbar color="primary" style="background-color: #0A1928" class="flex-container">
+        <img src="assets/images/logohd-toolbar.png" alt="logo" style="height: 30px; margin-right: 10px;">
+        <a style="margin-right: 10px"  mat-button>Home</a>
+        <a style="margin-right: 10px"  mat-button (click)="goToGames()">Games</a>
+        <a style="margin-right: 10px"  mat-button (click)="goToSearch()">Search</a>
+        <span class="flexExpand"></span>
+        <a style="margin-right: 10px"mat-button (click)="goToProfile()">My Friends</a>
+        <a style="margin-right: 10px"mat-button (click)="goToProfile()">My Profile</a>
+        <a style="margin-right: 10px"mat-button (click)="goToSignout()">Sign Out</a>
+      </mat-toolbar>
+      <p class="greeting">Hello, {{getCurrentUserEmail()}}</p>
+</div>
     <ng-template #signedOut>
-        <div class="navbar">
-            <div class="navbar-item">
-                <a href="/users/login" class="navbar-item-text">Login</a>
-            </div>
-            <div class="navbar-item">
-                <a href="/users/register" class="navbar-item-text">Register</a>
-            </div>
-        </div>
+      <mat-toolbar color="primary" style="background-color: #0A1928" class="flex-container">
+        <img src="assets/images/logohd-toolbar.png" alt="logo" style="height: 30px; margin-right: 10px;">
+        <a style="margin-right: 10px" mat-button >Home</a>
+        <span class="flexExpand"></span>
+        <a style="margin-right: 10px" mat-button (click)="goToLogin()">Login</a>
+        <a mat-button (click)="goToRegister()">Register</a>
+      </mat-toolbar>
     </ng-template>
 </div>
 <router-outlet></router-outlet>
