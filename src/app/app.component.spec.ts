@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('matchmakr-application');
   });
 
-  it('should render title', () => {
+  it('should render navbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, matchmakr-application');
+    expect(compiled.getElementsByClassName("navbar")[0].checkVisibility()).toBeTruthy();
   });
 });

@@ -1,0 +1,24 @@
+<h2 mat-subheader>Search Users</h2>
+<mat-form-field appearance="fill">
+  <mat-label>Search users</mat-label>
+  <input id="filterBox" matInput type="text" placeholder="Search users..." #filter>
+</mat-form-field>
+<button mat-button color="primary" (click)="Submit(filter.value)">Search</button>
+<button mat-button color="primary" (click)="Clear()">Reset</button>
+<div class="card-grid">
+  <mat-card class="card" *ngFor="let user of filteredUsers">
+    <mat-card-header>
+      <mat-card-title>
+        <img style="background-color: black;" src="../../../assets/images/profile.png"/>
+      </mat-card-title>
+      <mat-card-subtitle>subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>{{user.userName}}</mat-card-content>
+    <mat-card-footer>{{user.online}}</mat-card-footer>
+    <button mat-button (click)="ViewProfile(user.userName)">Profile</button>
+  </mat-card>
+</div>
+
+<ng-template #FailLoad>
+  <h1>Users Failed to Load, Please Try Again Later!</h1>
+</ng-template>

@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Usercredentials} from "../../models/usercredentials";
-import {UserRegister} from "../../models/userregister.model";
+import {UserRegister} from "../../models/userregister";
 import {MatError} from "@angular/material/form-field";
 
 @Component({
@@ -15,7 +15,7 @@ import {MatError} from "@angular/material/form-field";
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  errorMsg: string;
+  errorMsg: string; 
   registerForm: FormGroup;
   constructor(private as: AuthService, private router: Router) {
     this.errorMsg = "";

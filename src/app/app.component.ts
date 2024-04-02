@@ -41,5 +41,7 @@ export class AppComponent {
   goToGames(){
     this.router.navigate(['games'])
   }
-
+  goToSearch() {
+    this.router.navigate(['search'])
+  }
 }
