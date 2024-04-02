@@ -128,7 +128,7 @@ export class AuthService {
         result.complete();
         if (isPlatformBrowser(this.platformID)) {
           localStorage.setItem("session", (user.email.length * 1274321).toString());
-          localStorage.setItem("email", user.email);
+          localStorage.setItem("email", user.email); // vulnerability?
         }
       },
       error: () => {
