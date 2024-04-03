@@ -6,11 +6,21 @@
         <a style="margin-right: 10px"  mat-button (click)="goToGames()">Games</a>
         <a style="margin-right: 10px"  mat-button>Search</a>
         <span class="flexExpand"></span>
-        <a style="margin-right: 10px"mat-button (click)="goToProfile()">My Friends</a>
+        <a style="margin-right: 10px"mat-button (click)="goToFriends()">My Friends</a>
         <a style="margin-right: 10px"mat-button (click)="goToProfile()">My Profile</a>
         <a style="margin-right: 10px"mat-button>Sign Out</a>
       </mat-toolbar>
       <p class="greeting">Hello, {{getCurrentUserEmail()}}</p>
+      <div class="drawer" [ngClass]="{open: draweropen}">
+        <div class="drawer-tab"  (click)="draweropen = !draweropen">
+          My Lobby
+        </div>
+        <p>Game: Call of Duty</p>
+        <p>Player 1 - Me</p>
+        <p>Player 2</p>
+        <p>Empty</p>
+        <p>Empty</p>
+      </div>
 </div>
     <ng-template #signedOut>
       <mat-toolbar color="primary" style="background-color: #0A1928" class="flex-container">

@@ -15,28 +15,20 @@ export class AuthService {
   private baseURL = "http://localhost:8080/users";
   private platformID: any;
   constructor(private httpClient: HttpClient)
-  { 
+  {
     this.platformID = inject(PLATFORM_ID);
   }
   isUserSignedIn() {
-    if (isPlatformBrowser(this.platformID)) {
-      if (localStorage.getItem("session")) {
-        console.log("User is signed in");
-        return true;
-      }
-      console.log("User is not signed in");
-      return false;
-    }
-    return false;
+   return isPlatformBrowser(this.platformID) && localStorage.getItem("session");
   }
   getCurrentUserEmail() {
     if (isPlatformBrowser(this.platformID)) {
-      var d = localStorage.getItem("email");
-      if (!d) {
+      let email = localStorage.getItem("email");
+      if (!email) {
         return null;
       }
-      if ((d!.length * 1274321).toString()  == (localStorage.getItem("session"))) {
-        return d;
+      if ((email!.length * 1274321).toString()  == (localStorage.getItem("session"))) {
+        return email;
       }
     }
     return null;
@@ -100,7 +92,7 @@ export class AuthService {
         error: () => {
           //error
           result.next(false);
-          result.complete();      
+          result.complete();
           return result.asObservable();
         }
       });
@@ -134,7 +126,7 @@ export class AuthService {
       error: () => {
         //error
         result.next(false);
-        result.complete();    
+        result.complete();
       },
       complete: () => {
         // this is done regardless of success or error
@@ -162,5 +154,5 @@ export class AuthService {
     });
     return result.asObservable();
   }
-  
+
 }

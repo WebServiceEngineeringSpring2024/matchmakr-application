@@ -1,21 +1,22 @@
 <h2 mat-subheader>Total Game list</h2>
 <mat-form-field appearance="fill">
   <mat-label>Filter games</mat-label>
-  <input id="filterBox" matInput type="text" placeholder="Filter games" #filter>
+  <input type="text" [(ngModel)]="search" matInput placeholder="Filter games">
 </mat-form-field>
-<button mat-button color="primary" (click)="Submit(filter.value)">Search</button>
-<button mat-button color="primary" (click)="Clear()">Reset</button>
-<div class="card-grid">
-  <mat-card class="card" *ngFor="let game of filteredGames">
-    <mat-card-header>
-      <mat-card-title>{{game.id}}</mat-card-title>
-      <mat-card-subtitle>{{game.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>Description</mat-card-content>
-    <mat-card-footer>Max Players: </mat-card-footer>
-    <button mat-button>Make Lobby</button>
-  </mat-card>
-</div>
+<button mat-button color="primary" (click)="this.search.set('')">Reset</button>
+<ng-container *ngIf="games | async as games">
+  <div class="card-grid">
+    <mat-card class="card" *ngFor="let game of games">
+      <mat-card-header>
+        <mat-card-title>{{game.id}}</mat-card-title>
+        <mat-card-subtitle>{{game.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>Description</mat-card-content>
+      <mat-card-footer>Max Players: </mat-card-footer>
+      <button id="gridButton">Make Lobby</button>
+    </mat-card>
+  </div>
+</ng-container>
 
 <ng-template #FailLoad>
   <h1>Games Failed to Load, Please Try Again Later!</h1>

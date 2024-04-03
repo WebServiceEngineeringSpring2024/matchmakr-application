@@ -3,25 +3,28 @@ import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Game } from '../models/game';
 import BaseService from "../classes/base-service";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
 })
-// Corresponds to the GameController in the backend.
-export class GameService extends BaseService{
+
+export class UserService extends BaseService{
 
   // NOTE: Angular HTTP module always returns an Observable, which must be subscribed to or else nothing will happen.
   // Returns a list of all games
-  getAllGames(): Observable<Game[]> {
+  get(id?: number): Observable<User[] | User> {
     try {
-      return this?.httpClient?.get<Game[]>(`${this.baseUrl}/games`) || new Observable<Game[]>();
+      return (typeof(id) !== 'undefined')
+        ? this?.httpClient?.get<User>(`${this.baseUrl}/users/${id}`) || new Observable<User>()
+        : this?.httpClient?.get<User[]>(`${this.baseUrl}/users`) || new Observable<User[]>();
     } catch (err) {
       console.log("Error occurred.");
     }
-    return new Observable<Game[]>();
+    return new Observable<User[]>();
   }
   // Returns a game with the matching id
-  getGame(id: number): Observable<Game> {
+  getFriends(id: number): Observable<Game> {
     try {
       return this.httpClient.get<Game>(`${this.baseUrl}/games/${id}`);
     } catch (err) {

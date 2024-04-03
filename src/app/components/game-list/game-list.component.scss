@@ -1,31 +1,22 @@
 .mat-card {
-  background-color: white;
-  color: red;
+  background-color: red;
+  color: white;
 }
+
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Change this line */
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
   gap: 20px;
 }
 
-.card {
-  width: 100%;
-}
-
-.card-button {
-  margin-left: auto;
-  margin-top: 10px;
-}
-
-
-button.mat-button {
-  background-color: #0A1928;;
-  color: #0A1928;
-  padding: 8px 24px;
+.grid-button{
+  background-color: #1976d2;
+  color: wheat;
   border-radius: 4px;
-  font-size: 1.2rem;
-}
-
-button.mat-button:hover {
-  background-color: #0056b3;
+  padding: 8px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #0056b3;
+  }
 }

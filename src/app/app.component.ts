@@ -13,18 +13,19 @@ import {MatIcon} from "@angular/material/icon";
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, GameListComponent, HttpClientModule, MatToolbar, MatFormField, MatIcon],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title: string;
-  constructor(private as: AuthService, private router: Router) {
+  draweropen: boolean = false;
+  constructor(private authService: AuthService, private router: Router) {
 	this.title = "matchmakr-application";
   }
   isSignedIn() {
-    return this.as.isUserSignedIn();
+    return this.authService.isUserSignedIn();
   }
   getCurrentUserEmail() {
-    return this.as.getCurrentUserEmail()
+    return this.authService.getCurrentUserEmail();
   }
   goToRegister(){
     this.router.navigate(['users/register'])
@@ -40,6 +41,9 @@ export class AppComponent {
   }
   goToGames(){
     this.router.navigate(['games'])
+  }
+  goToFriends(){
+    this.router.navigate(['friends'])
   }
 
 }

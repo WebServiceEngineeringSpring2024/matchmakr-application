@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, model, OnInit} from '@angular/core';
 import { Game } from '../../models/game';
 import {AsyncPipe, NgFor, NgIf} from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,8 +14,9 @@ import {
 import {MatTableModule} from "@angular/material/table";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {MatButton, MatButtonModule} from "@angular/material/button";
-import {filter} from "rxjs";
+import {MatButtonModule} from "@angular/material/button";
+import {BehaviorSubject, combineLatest, map, Observable, ReplaySubject, tap, withLatestFrom} from "rxjs";
+import {toObservable} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-game-list',
@@ -24,47 +25,18 @@ import {filter} from "rxjs";
   templateUrl: './game-list.component.html',
   styleUrl: './game-list.component.scss'
 })
-export class GameListComponent implements OnInit {
-  games: Game[];
-  query: string;
-  isFiltered: boolean;
-  searchTerm: string = '';
-  filteredGames: any[] = [];
-  constructor(private gss: GameService) {
-    this.query = "";
-    this.games = [];
-    this.filteredGames = [];
-    this.isFiltered = false;
-  }
-  // Runs once the page is initialized
-  ngOnInit(): void {
-    this.getGames();
-  }
-  // Call to the game service to get a list of all games
-  private getGames() {
-    this.gss.getAllGames().subscribe(data => {
-      this.games = data;
-      this.filteredGames = data;
-    })
-  }
-  // Submit search query
-  Submit(filter: string) {
-    this.filteredGames = [];
-    this.isFiltered = true;
-    // perform a case insensitive search on the data in the games list
-    this.games.forEach(game => {
-      if (game.name.toLowerCase().includes(filter.toLowerCase())) {
-        this.filteredGames.push(game);
-      }
-    });
-    // if no games were found, alert user
-    if (this.filteredGames.length == 0) {
-      alert("No games found containing the name " + filter);
-      this.filteredGames = this.games;
-    }
-  }
-  Clear() {
-    this.isFiltered = false;
-    this.filteredGames = this.games;
-  }
+export class GameListComponent {
+  private gss = inject(GameService);
+  public search = model('');
+  games: Observable<Game[]> = combineLatest([
+    this.gss.getAllGames(),
+    toObservable(this.search),
+  ]).pipe(
+    map(
+      ([games, filter]: any[]) => games.filter((game: Game) =>
+        filter.length === 0 ||
+        game.name.toLowerCase().includes(filter.toLowerCase()))
+    )
+  );
+
 }
