@@ -49,8 +49,11 @@ export class QuizComponent {
     let email = "" + this.as.getCurrentUserEmail(); // We verified above that the email is not null, this is acceptable
     this.ps.postPersonalityData(email, aggression, kindness, competitivenes).subscribe((data) => {
       if (data) {
-        // success
-        this.router.navigate(['games']);
+        // update user session
+        if (this.as.updateSessionUponQuizSubmit()) {
+          // success
+          this.router.navigate(['games']);
+        }
       }
       else {
         // invalid
