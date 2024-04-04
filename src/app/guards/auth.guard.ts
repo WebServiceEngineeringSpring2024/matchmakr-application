@@ -12,6 +12,19 @@ export const authGuard: CanActivateFn = (route, state) => {
     token = localStorage.getItem("session");
   }
   if (token) {
+    // if the user hasnt taken the quiz
+    if (token[0] == '0') {
+      // redirect to quiz if not already headed there
+      if (state.url.includes('quiz')) {
+        return true;
+      }
+      else {
+        alert("Personality not found. Please take the personality quiz.");
+        router.navigate(['quiz']);
+        return false;
+      }
+      
+    }
     return true;
   }
   else {
