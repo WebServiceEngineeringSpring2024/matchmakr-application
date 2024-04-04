@@ -46,7 +46,6 @@ export class QuizComponent {
     kindness += this.optionEnum(this.formData.q3data) + this.optionEnum(this.formData.q8data) + this.optionEnum(this.formData.q9data);
     aggression += this.optionEnum(this.formData.q1data) + this.optionEnum(this.formData.q5data) + this.optionEnum(this.formData.q7data);
     competitivenes += this.optionEnum(this.formData.q2data) + this.optionEnum(this.formData.q4data) + this.optionEnum(this.formData.q6data);
-    alert(`TODO: add endpoint to receive personality data\nYour scores are: kindness=${kindness} aggression=${aggression} competitiveness=${competitivenes}`);
     let email = "" + this.as.getCurrentUserEmail(); // We verified above that the email is not null, this is acceptable
     this.ps.postPersonalityData(email, aggression, kindness, competitivenes).subscribe((data) => {
       if (data) {

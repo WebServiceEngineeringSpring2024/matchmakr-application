@@ -3,10 +3,7 @@
 <div *ngIf="username">
     <img style="background-color: black;" src="../../../assets/images/profile.png"/>
     <p>{{username}}</p>
-    <div *ngIf="online; else offline">
-        Online
-    </div>
-    <ng-template #offline>Offline</ng-template>
+    <p>{{online}}</p>
 </div>
 
 

@@ -46,9 +46,37 @@ export class AuthService {
     }
     return null;
   }
-  signOut() {
+  signOut(): boolean | void {
     if (isPlatformBrowser(this.platformID)) {
-      localStorage.clear();
+      // get email from local,
+      let token = localStorage.getItem("e");
+      let email = this.decr(token ? token : '');
+      if (!email) {
+        localStorage.clear();
+        return false;
+      }
+      // use signout endpoint,
+      if (this.httpClient) {
+        this.httpClient.post(`${this.baseURL}/signout/email`, {
+          "email": email,
+          "password": ''
+        }).subscribe({
+          next: () => {
+            // then clear
+            localStorage.clear();
+            return true;
+          },
+          error: (err) => {
+            // then clear
+            localStorage.clear();
+            return false;
+          }
+        })
+      }
+      else { return false; }
+    }
+    else {
+      return false;
     }
   }
   getUserByID(id: number): Observable<User> {
