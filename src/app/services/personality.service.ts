@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Personality } from '../models/personality';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,72 @@ export class PersonalityService {
       result.complete();
     }
     return result.asObservable();
+  }
+  getPersonalityData(id: number) : Observable<Personality> {
+    if (this.httpClient) {
+      // get request
+      return this.httpClient.get<Personality>(`${this.baseURL}/personalities/id/${id}`);
+    }
+    else {
+      return new Observable<Personality>();
+    }
+  }
+  getAdjectives(p: Personality) : string {
+    let adj = "";
+    let aggro = p.aggression;
+    switch (true) {
+      case (aggro < 3):
+        adj += "Patient, ";
+        break;
+      case (aggro < 6):
+        adj += "Tolerant, ";
+        break;
+      case (aggro < 9):
+        adj += "Composed, ";
+        break;
+      case (aggro < 12):
+        adj += "Combative, ";
+        break;
+      case (aggro == 12):
+        adj += "Militant, "
+        break;
+    }
+    let comp = p.competitiveness;
+    switch (true) {
+      case (comp < 3):
+        adj += "Friendly, ";
+        break;
+      case (comp < 6):
+        adj += "Casual, ";
+        break;
+      case (comp < 9):
+        adj += "Balanced, ";
+        break;
+      case (comp < 12):
+        adj += "Competitive, ";
+        break;
+      case (comp == 12):
+        adj += "Hyper-competitive, "
+        break;
+    }
+    let kind = p.kindness;
+    switch (true) {
+      case (kind < 3):
+        adj += "Ruthless ";
+        break;
+      case (kind < 6):
+        adj += "Determined ";
+        break;
+      case (kind < 9):
+        adj += "Compassionate ";
+        break;
+      case (kind < 12):
+        adj += "Altruistic ";
+        break;
+      case (kind == 12):
+        adj += "Gracious "
+        break;
+    }
+    return adj;
   }
 }
