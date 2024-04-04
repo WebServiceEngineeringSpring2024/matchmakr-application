@@ -99,7 +99,10 @@ export class AuthService {
     if (isPlatformBrowser(this.platformID)) {
       let s = localStorage.getItem("session")
       if (s) {
-        s = (Math.round(Math.random() * 8 + 1)).toString() + s.substring(1);
+        const rb = new Uint32Array(1);
+        window.crypto.getRandomValues(rb);
+        let rnd = Math.round((rb[0] / (0xffffffff + 1)) * 7 + 1);
+        s = rnd.toString() + s.substring(1);
         localStorage.setItem("session", s)
         return true;
       }
@@ -160,7 +163,10 @@ export class AuthService {
               // personality found
               
               if (isPlatformBrowser(this.platformID)) {
-                localStorage.setItem("session", (Math.round(Math.random() * 8 + 1)).toString() +(user.email.length * 1274321).toString());
+                const rb = new Uint32Array(1);
+                window.crypto.getRandomValues(rb);
+                let rnd = Math.round((rb[0] / (0xffffffff + 1)) * 7 + 1);
+                localStorage.setItem("session", rnd+(user.email.length * 1274321).toString());
                 let encrypted = this.encr(user.email);
                 localStorage.setItem("e", encrypted);
               }
