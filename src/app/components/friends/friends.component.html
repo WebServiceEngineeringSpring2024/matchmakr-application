@@ -1,0 +1,30 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  <!-- Online Friends -->
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Online Friends</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let friend of onlineFriends">
+          {{ friend.name }}
+          <button>Add To Lobby</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <!-- Offline Friends -->
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Offline Friends</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let friend of offlineFriends">
+          {{ friend.name }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

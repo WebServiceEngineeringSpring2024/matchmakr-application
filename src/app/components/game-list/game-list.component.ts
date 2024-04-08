@@ -46,8 +46,8 @@ export class GameListComponent {
         game.name.toLowerCase().includes(filter.toLowerCase()))
     ),
   );
-  addToLobby(game: Game){
-    this.lass.createLobby(game);
+  addToLobby(game: Game, maxUsers: number){
+    this.lass.createLobby(game, maxUsers);
     this.router.navigate(['users/search']);
   }
 }
