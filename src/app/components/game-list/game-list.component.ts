@@ -19,6 +19,9 @@ import {BehaviorSubject, combineLatest, map, Observable, ReplaySubject, tap, wit
 import {toObservable} from "@angular/core/rxjs-interop";
 import {AuthService} from "../../services/auth.service";
 import {LobbyService} from "../../services/lobby.service";
+import {routes} from "../../app.routes";
+import {HttpClientModule} from "@angular/common/http";
+import {Router, RouterModule, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-game-list',
@@ -30,6 +33,8 @@ import {LobbyService} from "../../services/lobby.service";
 export class GameListComponent {
   private gss = inject(GameService);
   private lass = inject(LobbyService);
+  constructor( private router: Router) {
+  }
   public search = model('');
   games: Observable<Game[]> = combineLatest([
     this.gss.getAllGames(),
@@ -39,10 +44,10 @@ export class GameListComponent {
       ([games, filter]: any[]) => games.filter((game: Game) =>
         filter.length === 0 ||
         game.name.toLowerCase().includes(filter.toLowerCase()))
-    )
+    ),
   );
   addToLobby(game: Game){
     this.lass.createLobby(game);
+    this.router.navigate(['users/search']);
   }
-
 }

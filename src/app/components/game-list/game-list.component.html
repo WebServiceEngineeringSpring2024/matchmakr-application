@@ -1,19 +1,23 @@
 <h2 mat-subheader>Total Game list</h2>
+
 <mat-form-field appearance="fill">
   <mat-label>Filter games</mat-label>
   <input type="text" [(ngModel)]="search" matInput placeholder="Filter games">
 </mat-form-field>
+
 <button mat-button color="primary" (click)="this.search.set('')">Reset</button>
+
 <ng-container *ngIf="games | async as games">
   <div class="card-grid">
     <mat-card class="card" *ngFor="let game of games">
       <mat-card-header>
-        <mat-card-title>{{game.id}}</mat-card-title>
-        <mat-card-subtitle>{{game.name}}</mat-card-subtitle>
+        <mat-card-title class="username"> Game Title: {{game.name}}</mat-card-title>
       </mat-card-header>
-      <mat-card-content>Description</mat-card-content>
-      <mat-card-footer>Max Players: </mat-card-footer>
-      <button id="gridButton" (click)="addToLobby(game)">Make Lobby</button>
+      <mat-card-content>
+        <p>Description: {{game.description}}</p>
+        <p> Max Players: {{game.maxPlayers}}</p>
+      </mat-card-content>
+      <button class="grid-button" (click)="addToLobby(game)">Make Lobby</button>
     </mat-card>
   </div>
 </ng-container>

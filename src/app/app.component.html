@@ -21,7 +21,7 @@
       <p class="greeting">Hello, {{getCurrentUserEmail()}}</p>
       <div class="drawer" [ngClass]="{open: draweropen}">
         <div class="drawer-tab"  (click)="draweropen = !draweropen">
-          My Lobby
+          Lobby
         </div>
         <ng-container *ngIf="lobbyService.lobby() as lobby">
           <p id="current-game">Game: {{lobby.game.name}}</p>

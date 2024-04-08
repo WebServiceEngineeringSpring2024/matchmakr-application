@@ -18,7 +18,6 @@ export const routes: Routes = [
     { path: 'games', component: GameListComponent, canActivate: [authGuard] },
     { path: 'signout', component: LoginComponent, canActivate: [signoutGuard]},
     { path: 'quiz', component: QuizComponent, canActivate: [quizGuard]},
-  { path: 'profile', component: ProfileComponent, canActivate: [authGuard, currentUserViewGuard]},
   {path: 'users/search', component: UsersComponent},
   { path: 'users/:id', component: ProfileComponent, data: {id: 0} },
   { path: 'friends', component: FriendsComponent},

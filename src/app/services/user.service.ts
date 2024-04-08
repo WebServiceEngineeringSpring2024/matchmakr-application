@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Game } from '../models/game';
 import BaseService from "../classes/base-service";
 import {User} from "../models/user";
+import {UserFriend} from "../models/friend";
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +25,13 @@ export class UserService extends BaseService{
     return new Observable<User[]>();
   }
   // Returns a game with the matching id
-  getFriends(id: number): Observable<Game> {
+  getFriends(id: number): Observable<UserFriend> {
     try {
-      return this.httpClient.get<Game>(`${this.baseUrl}/games/${id}`);
+      return this.httpClient.get<UserFriend>(`${this.baseUrl}/users/${id}/friends`);
     } catch (err) {
-      console.log("Game " + id + " not found.");
+      console.log("Friends " + id + " not found.");
     }
-    return new Observable<Game>();
+    return new Observable<UserFriend>();
   }
 
 
