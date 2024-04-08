@@ -17,6 +17,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {BehaviorSubject, combineLatest, map, Observable, ReplaySubject, tap, withLatestFrom} from "rxjs";
 import {toObservable} from "@angular/core/rxjs-interop";
+import {AuthService} from "../../services/auth.service";
+import {LobbyService} from "../../services/lobby.service";
 
 @Component({
   selector: 'app-game-list',
@@ -27,6 +29,7 @@ import {toObservable} from "@angular/core/rxjs-interop";
 })
 export class GameListComponent {
   private gss = inject(GameService);
+  private lass = inject(LobbyService);
   public search = model('');
   games: Observable<Game[]> = combineLatest([
     this.gss.getAllGames(),
@@ -38,5 +41,8 @@ export class GameListComponent {
         game.name.toLowerCase().includes(filter.toLowerCase()))
     )
   );
+  addToLobby(game: Game){
+    this.lass.createLobby(game);
+  }
 
 }

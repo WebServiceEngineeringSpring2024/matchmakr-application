@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
+import {LobbyService} from "./services/lobby.service";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,10 @@ import {MatIcon} from "@angular/material/icon";
 export class AppComponent {
   title: string;
   draweropen: boolean = false;
+
+  public lobbyService = inject(LobbyService);
   constructor(private authService: AuthService, private router: Router) {
+
 	this.title = "matchmakr-application";
   }
   isSignedIn() {
@@ -28,22 +32,25 @@ export class AppComponent {
     return this.authService.getCurrentUserEmail();
   }
   goToRegister(){
-    this.router.navigate(['users/register'])
+    this.router.navigate(['users/register']);
   }
   goToLogin(){
     this.router.navigate(['users/login']);
   }
   goToSignout(){
-    this.router.navigate(['signout'])
+    this.router.navigate(['signout']);
   }
   goToProfile(){
-    this.router.navigate(['profile'])
+    this.router.navigate(['profile']);
   }
   goToGames(){
-    this.router.navigate(['games'])
+    this.router.navigate(['games']);
   }
   goToFriends(){
-    this.router.navigate(['friends'])
+    this.router.navigate(['friends']);
+  }
+  goToSearch(){
+    this.router.navigate(['users/search'])
   }
 
 }
