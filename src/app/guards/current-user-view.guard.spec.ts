@@ -9,7 +9,7 @@ describe('currentUserViewGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
       TestBed.runInInjectionContext(() => currentUserViewGuard(...guardParameters));
   beforeEach(() => {
-    localStorage.setItem("email", "test@biz.co");
+    localStorage.setItem("e", "test@biz.co");
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
