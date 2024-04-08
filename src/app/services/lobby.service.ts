@@ -23,7 +23,7 @@ export class LobbyService {
   public createLobby(game: Game){
     const currentUser = this.authService.getCurrentUserEmail();
     if(!currentUser) return;
-    const newUser = new User(0 , '', '', currentUser, 1);
+    const newUser = new User(0 , '', '', currentUser, 1, 0);
     this.lobby.set({
       game,
       users: [newUser]

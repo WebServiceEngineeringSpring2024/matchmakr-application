@@ -51,7 +51,7 @@ export class RegisterComponent {
       }
       else {
         // attempt to insert user
-        let newUser = new User(-1, userRegister.userName, userRegister.password, userRegister.confirmPassword, 0);
+        let newUser = new User(-1, userRegister.userName, userRegister.email, userRegister.password, 0, 0);
         this.as.register(newUser).subscribe((data) => {
           if (data) {
             // register success

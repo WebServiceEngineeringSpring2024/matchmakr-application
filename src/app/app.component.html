@@ -1,14 +1,22 @@
 <div>
     <div *ngIf="isSignedIn(); else signedOut">
+      <div *ngIf="isTakingQuiz(); else normal">
+        <mat-toolbar color="primary" style="background-color: #0A1928" class="flex-container">
+          <img src="assets/images/logohd-toolbar.png" alt="logo" style="height: 30px; margin-right: 10px;">
+          <span class="flexExpand"></span>
+          <a style="margin-right: 10px"mat-button (click)="goToSignout()">Sign Out</a>
+        </mat-toolbar>
+      </div>
+      <ng-template #normal>
       <mat-toolbar color="primary" style="background-color: #0A1928" class="flex-container">
         <img src="assets/images/logohd-toolbar.png" alt="logo" style="height: 30px; margin-right: 10px;">
-        <a style="margin-right: 10px"  mat-button>Home</a>
+        <a style="margin-right: 10px"  mat-button (click)="goToGames()">Home</a>
         <a style="margin-right: 10px"  mat-button (click)="goToGames()">Games</a>
         <a style="margin-right: 10px"  mat-button (click)="goToSearch()">Search Users</a>
         <span class="flexExpand"></span>
         <a style="margin-right: 10px"mat-button (click)="goToFriends()">My Friends</a>
         <a style="margin-right: 10px"mat-button (click)="goToProfile()">My Profile</a>
-        <a style="margin-right: 10px"mat-button>Sign Out</a>
+        <a style="margin-right: 10px"mat-button (click)="goToSignout()">Sign Out</a>
       </mat-toolbar>
       <p class="greeting">Hello, {{getCurrentUserEmail()}}</p>
       <div class="drawer" [ngClass]="{open: draweropen}">
@@ -20,6 +28,7 @@
           <p *ngFor="let user of lobby.users">{{user.email}}</p>
         </ng-container>
       </div>
+      </ng-template>
 </div>
     <ng-template #signedOut>
       <mat-toolbar color="primary" style="background-color: #0A1928" class="flex-container">

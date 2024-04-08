@@ -14,8 +14,8 @@ export const currentUserViewGuard: CanActivateFn = (route, state) => {
     alert("Please sign in.");
     return false;
   }
-  // if current user email corresponds with session id 
-  
+  // if current user email corresponds with session id
+
   var sessionID = getSessionStored(platformID);
   // if no session id found redirect to login
   if (!sessionID) {

@@ -28,6 +28,9 @@ export class AppComponent {
   isSignedIn() {
     return this.authService.isUserSignedIn();
   }
+  isTakingQuiz(){
+    return this.authService.isTakingQuiz();
+  }
   getCurrentUserEmail() {
     return this.authService.getCurrentUserEmail();
   }
