@@ -31,9 +31,6 @@ export class AppComponent {
   isTakingQuiz(){
     return this.authService.isTakingQuiz();
   }
-  isTakingQuiz() {
-    return this.as.isTakingQuiz();
-  }
   getCurrentUserEmail() {
     return this.authService.getCurrentUserEmail();
   }
@@ -57,8 +54,5 @@ export class AppComponent {
   }
   goToSearch(){
     this.router.navigate(['users/search'])
-  }
-  goToSearch() {
-    this.router.navigate(['search'])
   }
 }
