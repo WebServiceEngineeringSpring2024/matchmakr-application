@@ -16,7 +16,7 @@ export class AuthService {
   private baseURL = "http://localhost:8080/users";
   private platformID: any;
   constructor(private httpClient: HttpClient, private ps: PersonalityService)
-  { 
+  {
     this.platformID = inject(PLATFORM_ID);
   }
   isUserSignedIn() {
@@ -161,7 +161,7 @@ export class AuthService {
           let subscription = this.ps.getPersonalityData(parseInt(data)).subscribe({
             next: (dta) => {
               // personality found
-              
+
               if (isPlatformBrowser(this.platformID)) {
                 const rb = new Uint32Array(1);
                 window.crypto.getRandomValues(rb);
@@ -175,7 +175,7 @@ export class AuthService {
             },
             error: (err) => {
               // personality not found
-              
+
               if (isPlatformBrowser(this.platformID)) {
                 localStorage.setItem("session", "0"+(user.email.length * 1274321).toString());
                 let encrypted = this.encr(user.email);
@@ -185,13 +185,13 @@ export class AuthService {
               result.complete();
             }
           })
-          
+
           return result.asObservable();
         }
         else {
           //error
           result.next(false);
-          result.complete();      
+          result.complete();
           return result.asObservable();
         }
       });
@@ -226,7 +226,7 @@ export class AuthService {
       error: () => {
         //error
         result.next(false);
-        result.complete();    
+        result.complete();
       },
       complete: () => {
         // this is done regardless of success or error
@@ -254,14 +254,14 @@ export class AuthService {
     });
     return result.asObservable();
   }
-  
+
   // encrypts a string
   encr(str: string): string {
     const encryptedChars = str.split('').map((char) => {
       if (char.match(/[a-zA-Z]/)) {
-          const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
-          const shiftedCharCode = (char.charCodeAt(0) - baseCharCode + 3) % 26 + baseCharCode;
-          return String.fromCharCode(shiftedCharCode);
+        const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+        const shiftedCharCode = (char.charCodeAt(0) - baseCharCode + 3) % 26 + baseCharCode;
+        return String.fromCharCode(shiftedCharCode);
       }
       return char; // Non-alphabetic characters remain unchanged
     });
@@ -271,12 +271,12 @@ export class AuthService {
   decr(str: string): string {
     const decryptedChars = str.split('').map((char) => {
       if (char.match(/[a-zA-Z]/)) {
-          const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
-          const shiftedCharCode = (char.charCodeAt(0) - baseCharCode - 3 + 26) % 26 + baseCharCode;
-          return String.fromCharCode(shiftedCharCode);
+        const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+        const shiftedCharCode = (char.charCodeAt(0) - baseCharCode - 3 + 26) % 26 + baseCharCode;
+        return String.fromCharCode(shiftedCharCode);
       }
       return char; // Non-alphabetic characters remain unchanged
-  });
-  return decryptedChars.join('');
+    });
+    return decryptedChars.join('');
   }
 }

@@ -9,7 +9,7 @@ import { Personality } from '../models/personality';
 export class PersonalityService {
   private baseURL = "http://localhost:8080";
   constructor(private httpClient: HttpClient) { }
-  
+
   postPersonalityData(email: string, aggression: number, kindness: number, competitiveness: number): Observable<boolean> {
     const result = new Subject<boolean>();
     // verify that id is truthy
@@ -48,13 +48,13 @@ export class PersonalityService {
         next: () => {
           // success
           result.next(true);
-          result.complete();      
+          result.complete();
           return result.asObservable();
         },
         error: () => {
           // error
           result.next(false);
-          result.complete();      
+          result.complete();
           return result.asObservable();
         }
       })

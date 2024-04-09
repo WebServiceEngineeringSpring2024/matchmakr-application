@@ -23,7 +23,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         router.navigate(['quiz']);
         return false;
       }
-      
+
     }
     return true;
   }
@@ -33,4 +33,3 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
-

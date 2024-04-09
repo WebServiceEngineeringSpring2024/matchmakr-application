@@ -10,18 +10,16 @@
   gap: 20px;
 }
 
-.grid-button {
+.grid-button{
   background-color: #0A1928;
   color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.grid-button:hover {
-  background-color: #0056b3;
+  padding: 8px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+&:hover {
+   background-color: #0056b3;
+ }
 }
 .logo-container {
   position: absolute;
@@ -33,3 +31,4 @@
   height: 50px;
   width: 50px;
 }
+

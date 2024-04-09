@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Usercredentials} from "../../models/usercredentials";
-import {UserRegister} from "../../models/userregister";
+import {UserRegister} from "../../models/userregister.model";
 import {MatError} from "@angular/material/form-field";
 
 @Component({
@@ -15,7 +15,7 @@ import {MatError} from "@angular/material/form-field";
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  errorMsg: string; 
+  errorMsg: string;
   registerForm: FormGroup;
   constructor(private as: AuthService, private router: Router) {
     this.errorMsg = "";
@@ -50,15 +50,8 @@ export class RegisterComponent {
         return;
       }
       else {
-        let un: string, pw: string, em: string;
-        if (true) {
-          un = userRegister.userName;
-          pw = userRegister.password;
-          em = userRegister.email;
-          userRegister = new UserRegister('','','','');
-        }
         // attempt to insert user
-        let newUser = new User(-1, un, pw, em, 0, 0);
+        let newUser = new User(-1, userRegister.userName, userRegister.email, userRegister.password, 0, 0);
         this.as.register(newUser).subscribe((data) => {
           if (data) {
             // register success

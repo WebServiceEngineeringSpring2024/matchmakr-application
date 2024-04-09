@@ -14,8 +14,8 @@ export const currentUserViewGuard: CanActivateFn = (route, state) => {
     alert("Please sign in.");
     return false;
   }
-  // if current user email corresponds with session id 
-  
+  // if current user email corresponds with session id
+
   var sessionID = getSessionStored(platformID);
   // if no session id found redirect to login
   if (!sessionID) {
@@ -53,12 +53,7 @@ export const currentUserViewGuard: CanActivateFn = (route, state) => {
 function getEmailStored(platformID: Object) : string {
   var token: any;
   if (isPlatformBrowser(platformID)) {
-    if (localStorage.getItem("e")) {
-      token = decr(localStorage.getItem("e")!);
-    }
-    else {
-      token = '';
-    }
+    token = localStorage.getItem("email");
   }
   if (!token) {
     return '';
@@ -93,15 +88,4 @@ function testInvalidSession() : boolean {
 }
 function testValidSession() : boolean {
   return true;
-}
-function decr(str: string): string {
-  const decryptedChars = str.split('').map((char) => {
-    if (char.match(/[a-zA-Z]/)) {
-        const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
-        const shiftedCharCode = (char.charCodeAt(0) - baseCharCode - 3 + 26) % 26 + baseCharCode;
-        return String.fromCharCode(shiftedCharCode);
-    }
-    return char; // Non-alphabetic characters remain unchanged
-});
-return decryptedChars.join('');
 }
