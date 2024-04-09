@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField} from "@angular/material/form-field";
