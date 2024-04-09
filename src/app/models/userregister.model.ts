@@ -4,7 +4,7 @@ export class UserRegister {
   password: string;
   confirmPassword: string
 
-  constructor() {
+  constructor(email: string, userName: string, password: string, confirmPassword: string) {
     this.email = email;
     this.password = password;
     this.userName = userName;
