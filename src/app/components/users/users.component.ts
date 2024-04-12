@@ -1,4 +1,4 @@
-import {Component, inject, model} from '@angular/core';
+import {Component, inject, model, OnInit} from '@angular/core';
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {
   MatCard,
@@ -19,6 +19,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {LobbyService} from "../../services/lobby.service";
 import {HttpClientModule} from "@angular/common/http";
+import { FriendsService } from '../../services/friends.service';
+import { Friendview } from '../../models/friendview';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -31,7 +35,12 @@ export class UsersComponent {
   private uss = inject(UserService);
   public search = model('');
   private lass = inject(LobbyService);
+  private fs = inject(FriendsService);
+  private as = inject(AuthService);
+  private router = inject(Router);
   buttonClicked: boolean = false;
+  public friends: Friendview[];
+  currentUserId: number;
   users: Observable<User[]> = combineLatest([
     this.uss.get(),
     toObservable(this.search),
@@ -42,7 +51,81 @@ export class UsersComponent {
         user?.userName?.toLowerCase()?.includes(filter?.toLowerCase()))
     )
   );
-  addToExistingLobby(user: User){
-    this.lass.addUser(user);
+
+  addToExistingLobby(friend: Friendview){
+    // verify that user being added is in the list of friends
+    for (let h = 0; h < this.friends.length; h++) {
+      if (this.friends[h].id == friend.id) {
+        // verify that the user being added does actually exist
+        this.as.getUserByID(friend.id).subscribe((value: User) => {
+          this.lass.addUser(value);
+        });
+        return;
+      }
+    }
+  }
+
+
+
+  constructor() {
+    this.friends = [];
+    this.currentUserId = 0;
+    this.ngOnInit();
+  }
+  ngOnInit(): void {
+    let curr = this.as.getCurrentUserEmail();
+    if (!curr) {
+      return;
+    }
+    // Get the ID of the current user,
+    this.as.getUserByEmail(curr).subscribe((currUser: User) => {
+      this.currentUserId = currUser.id;
+      // Get their list of friends
+      this.fs.getFriends(this.currentUserId).subscribe({
+        next: (value) => {
+          this.friends = value;
+        },
+        error: (err) => {
+          // error message
+        }
+      })
+    });
+  }
+  viewProfile(id: number) {
+    this.router.navigate([`/users/${id}`]);
+  }
+  addFriend(event: Event,  id: number) {
+    console.log("addFriend called");
+    (event.target as HTMLButtonElement).disabled = true;
+    (event.target as HTMLButtonElement).textContent = "Sent...";
+    // verify that user being added is not in the list of friends
+    for (let h = 0; h < this.friends.length; h++) {
+      if (this.friends[h].id == id) {
+        alert("You are already friends with them.");
+        return;
+      }
+    }
+
+    // if they aren't, send friend request
+    try {
+      this.fs.sendFriendRequest(this.currentUserId, id).subscribe({
+        next: (value) => {
+          if (value) {
+            // successfully added
+            console.log("successfully added " + id);
+          }
+          else {
+            // failed to add
+            console.log("failed to add " + id);
+          }
+        }
+        , error: (err) => {
+          // error when adding friend
+          console.log("error when adding friend")
+        }
+      })
+    } catch {
+      console.log("error when adding friend");
+    }
   }
 }

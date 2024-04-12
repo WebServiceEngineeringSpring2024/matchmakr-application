@@ -1,7 +1,8 @@
 import { Friendview } from './friendview';
 
 describe('Friendview', () => {
-  it('should update me plox', () => {
-    expect(false).toBeTruthy();
+  it('should create an instance', () => {
+    expect(new Friendview('',false,1)).toBeTruthy();
   });
+  
 });

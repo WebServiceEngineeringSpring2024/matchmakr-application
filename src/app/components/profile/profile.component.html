@@ -9,12 +9,35 @@
   <div *ngFor="let friend of friendsList">
     {{ friend.username }}
   </div>
-  <div *ngIf="showAdditional">
+  <div *ngIf="showAdditional; else friendOption">
     <h2>Personal info.</h2>
     <p>ID: {{id}}</p>
     <p>Email: {{email}}</p>
     <p>{{personality}}</p>
   </div>
+  <ng-template #friendOption>
+    <div *ngIf="friendStatus">
+      <div *ngIf="friendStatus == 'sent'">
+        <p>Friend request sent</p>
+      </div>
+      <div *ngIf="friendStatus == 'accepted'">
+        <form>
+          <button type="submit" (click)="removeFriend()">Remove Friend</button>
+        </form>
+      </div>
+      <div *ngIf="friendStatus == 'none'">
+        <form>
+          <button type="submit" (click)="sendFriendRequest()">Add Friend</button>
+        </form>
+      </div>
+      <div *ngIf="friendStatus == 'pending'">
+        <p>They sent you a friend request! </p>
+        <form>
+          <button type="submit" (click)="acceptFriendRequest()">Accept Friend</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
 </div>
 
 

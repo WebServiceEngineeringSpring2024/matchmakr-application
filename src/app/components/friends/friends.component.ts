@@ -121,7 +121,7 @@ export class FriendsComponent implements OnInit {
   }
   deleteFriend(id: number, username: string) {
     // modal "are you sure?" dialog
-    let resp = confirm("Are you sure you want to remove " + username + " as a friend?");
+    let resp = this.confirmPrompt(username);
     if (resp) {
       // yes
       this.fs.deleteFriend(this.currentUserId, id);
@@ -130,5 +130,8 @@ export class FriendsComponent implements OnInit {
   viewProfile(id: number) {
     // route to profile
     this.router.navigate([`/users/${id}`]);
+  }
+  confirmPrompt(username: string) : boolean {
+    return confirm("Are you sure you want to remove " + username + " as a friend?");
   }
 }
