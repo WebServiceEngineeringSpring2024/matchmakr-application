@@ -1,5 +1,6 @@
-<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-list cols="2" rowHeight="4:1">
   <!-- Online Friends -->
+  {{friendsMsg}}
   <mat-grid-tile>
     <mat-card>
       <mat-card-header>
@@ -7,8 +8,10 @@
       </mat-card-header>
       <mat-card-content>
         <div *ngFor="let friend of onlineFriends">
-          {{ friend.name }}
-          <button>Add To Lobby</button>
+          <form>              
+            <a style="cursor: pointer; color: blue; text-decoration: underline;" [routerLink]="" (click)="viewProfile(friend.id)">{{ friend.username }}</a>
+            <button type="submit" (click)="deleteFriend(friend.id, friend.username)">Remove</button>            
+          </form>
         </div>
       </mat-card-content>
     </mat-card>
@@ -22,7 +25,30 @@
       </mat-card-header>
       <mat-card-content>
         <div *ngFor="let friend of offlineFriends">
-          {{ friend.name }}
+          <form>              
+            <a style="cursor: pointer; color: blue; text-decoration: underline;" [routerLink]="" (click)="viewProfile(friend.id)">{{ friend.username }}</a>
+            <button type="submit" (click)="deleteFriend(friend.id, friend.username)">Remove</button>            
+          </form>        
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+{{requestsMsg}}
+<mat-grid-list cols="1" rowHeight="4:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Friend Requests</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let request of friendRequests">
+          <a style="cursor: pointer; color: blue; text-decoration: underline;" [routerLink]="" (click)="viewProfile(request.id)">{{ request.username }}</a>
+          <form>
+            <button type="submit" (click)="acceptRequest(request.id)">Accept</button>
+            <button type="submit" (click)="rejectRequest(request.id)">Reject</button>
+          </form>
         </div>
       </mat-card-content>
     </mat-card>

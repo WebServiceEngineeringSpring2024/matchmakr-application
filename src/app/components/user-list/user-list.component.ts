@@ -77,12 +77,16 @@ export class UserListComponent {
     // get user with this username (from filteredusers)
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].userName === username) {
-        this.router.navigate(['/users/' + this.users[i].id]);
+        this.RedirectToProfile(this.users[i].id);
         return true;
       }
     }
     console.log("ViewProfile failed to find " + username + " in users");
     return false;
-    // redirect to user profile.
+    
+  }
+  // redirect to user profile.
+  RedirectToProfile(id: number) {
+    this.router.navigate(['/users/' + id]);
   }
 }
