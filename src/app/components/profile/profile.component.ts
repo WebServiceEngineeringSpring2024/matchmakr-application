@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {NgForOf} from "@angular/common";
 import { AuthService } from '../../services/auth.service';
+import { FriendsService } from '../../services/friends.service';
+import { Friendview } from '../../models/friendview';
 import { User } from '../../models/user';
 import { NgIf } from '@angular/common';
 import { PersonalityService } from '../../services/personality.service';
@@ -9,7 +12,7 @@ import { Personality } from '../../models/personality';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgForOf],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -21,7 +24,9 @@ export class ProfileComponent {
   email: string;
   personality: string;
   errorMsg: string;
-  constructor(private route: ActivatedRoute, private as: AuthService, private ps: PersonalityService) { this.id = '0'; this.online = ''; this.showAdditional = false; this.username = 'Loading username...'; this.email = ''; this.errorMsg = ''; this.personality = ''; }
+  friendsMsg: string;
+  friendsList: Friendview[];
+  constructor(private route: ActivatedRoute, private as: AuthService, private ps: PersonalityService, private fs: FriendsService) { this.id = '0'; this.online = ''; this.showAdditional = false; this.username = 'Loading username...'; this.email = ''; this.friendsMsg = 'Loading friends...'; this.errorMsg = ''; this.personality = ''; this.friendsList = []; }
   ngOnInit() {
     this.errorMsg = "Loading...";
     var param = this.route.snapshot.paramMap.get('id');
@@ -44,6 +49,18 @@ export class ProfileComponent {
           this.errorMsg = "";
           this.username = user.userName;
           this.online = (user.online === 1 ? 'Online' : 'Offline');
+
+          // set friends
+          this.fs.getFriends(parseInt(this.id)).subscribe((data: Friendview[]) => {
+            this.friendsList = data;
+            if (this.friendsList) {
+              // not null, not empty
+              this.friendsMsg = "";
+            } else {
+              // null, empty
+              this.friendsMsg = "No friends found.";
+            }
+          })
 
           // extra data to show if current user is viewing their own profile
           if (user.email == this.as.getCurrentUserEmail()) {

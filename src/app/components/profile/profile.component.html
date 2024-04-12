@@ -4,6 +4,11 @@
   <img style="background-color: black;" src="../../../assets/images/profile.png"/>
   <p>{{username}}</p>
   <p>{{online}}</p>
+  <h2>{{username}}'s Friends</h2>
+  <p>{{friendsMsg}}</p>
+  <div *ngFor="let friend of friendsList">
+    {{ friend.username }}
+  </div>
   <div *ngIf="showAdditional">
     <h2>Personal info.</h2>
     <p>ID: {{id}}</p>
