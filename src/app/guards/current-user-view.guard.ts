@@ -30,7 +30,7 @@ export const currentUserViewGuard: CanActivateFn = (route, state) => {
   if (doesMatch(token, sessionID)) {
     // if so, get current user by email
     let as = inject(AuthService);
-    const user = as.getUserByEmail(token).subscribe((data) => {
+    const user = as.getUserByEmail(decr(token)).subscribe((data) => {
       if (data.id) {
         if (router) {
           testValidSession();
@@ -47,13 +47,13 @@ export const currentUserViewGuard: CanActivateFn = (route, state) => {
     alert("Please sign in.");
     return false;
   }
-  return true;
+  return false;
 };
 
 function getEmailStored(platformID: Object) : string {
   var token: any;
   if (isPlatformBrowser(platformID)) {
-    token = localStorage.getItem("email");
+    token = localStorage.getItem("e");
   }
   if (!token) {
     return '';
@@ -75,10 +75,22 @@ function getSessionStored(platformID: Object) : string {
   }
 }
 function doesMatch(email: string, session: string) : boolean {
-  if (email.length * 1274321 == (parseInt(session) || 0)) {
+  if (email.length * 1274321 == (parseInt(session.substring(1)) || 0)) {
     return true;
   }
   return false;
+}
+// decrypts a string
+function decr(str: string): string {
+  const decryptedChars = str.split('').map((char) => {
+    if (char.match(/[a-zA-Z]/)) {
+      const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+      const shiftedCharCode = (char.charCodeAt(0) - baseCharCode - 3 + 26) % 26 + baseCharCode;
+      return String.fromCharCode(shiftedCharCode);
+    }
+    return char; // Non-alphabetic characters remain unchanged
+  });
+  return decryptedChars.join('');
 }
 function testNoSession() : boolean {
   return true;

@@ -1,4 +1,4 @@
-<h1>Users Looking for Game that clostest match your personality: </h1>
+<h2>Users Looking for Game that closest match your personality: </h2>
 <ng-container *ngIf="closestUsers | async as closestUsers">
   <div class="card-grid">
     <mat-card class="card" *ngFor="let closestUser of closestUsers">
@@ -10,8 +10,26 @@
       </mat-card-header>
       <mat-card-content>Personality Score: {{closestUser.personality}} </mat-card-content>
       <mat-card-footer>
-        <button class="grid-button" (click)="addToExistingLobby(closestUser)" [disabled]="lass.hasUser(closestUser)">Add To My Lobby</button>
+        <button class="grid-button" (click)="addToMyExistingLobby(closestUser)" [disabled]="lass.hasUser(closestUser)">Add To My Lobby</button>
         <button class="grid-button">Add Friend</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</ng-container>
+<h2 mat-subheader>Your Currently Online Friends:</h2>
+<ng-container *ngIf="friends">
+  <div class="card-grid">
+    <mat-card class="card" *ngFor="let fr of friends">
+      <mat-card-header>
+        <mat-card-title class="username">User Name: {{fr.username}}</mat-card-title>
+        <div class="logo-container">
+          <img src="assets/images/logohd-toolbar.png" alt="logo" class="logo">
+        </div>
+      </mat-card-header>
+      <mat-card-content>{{fr.online ? "Online" : "Offline"}} </mat-card-content>
+      <mat-card-footer>
+        <button class="grid-button" (click)="addToExistingLobby(fr)" [disabled]="lass.hasUser(fr)">Add To My Lobby</button>
+        <button class="grid-button" (click)="viewProfile(fr.id)">Profile</button>
       </mat-card-footer>
     </mat-card>
   </div>
@@ -33,8 +51,8 @@
       </mat-card-header>
       <mat-card-content>Personality Score: {{user.personality}} </mat-card-content>
       <mat-card-footer>
-        <button class="grid-button" (click)="addToExistingLobby(user)" [disabled]="lass.hasUser(user)">Add To My Lobby</button>
-        <button class="grid-button">Add Friend</button>
+        <form><button type="submit" class="grid-button" (click)="addFriend($event, user.id)" [disabled]="lass.hasUser(user)">Add Friend</button></form>
+        <button class="grid-button" (click)="viewProfile(user.id)">Profile</button>
       </mat-card-footer>
     </mat-card>
   </div>

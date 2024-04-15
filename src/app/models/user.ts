@@ -6,7 +6,7 @@ export class User {
   userName: string;
   password: string;
   email: string;
-  online: number; // 0 or 1, 1 = online
+  online: boolean;
   /*
   language: string; // TBD
   city: string; // TBD
@@ -17,7 +17,7 @@ export class User {
   created: Date; // created in backend
   updated: Date; // created in backend
   */
-  constructor(id: number, userName: string, password: string, email: string, online: number, personality: number) {
+  constructor(id: number, userName: string, password: string, email: string, online: boolean, personality: number) {
     this.id = id;
     this.userName = userName;
     this.password = password;

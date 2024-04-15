@@ -2,6 +2,7 @@ import {Injectable, inject, PLATFORM_ID, signal, } from '@angular/core';
 import {User} from "../models/user";
 import {Game} from "../models/game";
 import {AuthService} from "./auth.service";
+import {Friendview} from "../models/friendview";
 
 type Lobby = {
   game: Game;
@@ -27,7 +28,7 @@ export class LobbyService {
     this.lobby.set(lobby);
   }
 
-  public hasUser(user: User): boolean {
+  public hasUser(user: User | Friendview): boolean {
     const lobby = this.lobby();
     if (!lobby) return false;
     return lobby.users?.filter((lobbyUser: User) => lobbyUser.id === user.id)?.length > 0;
@@ -37,7 +38,7 @@ export class LobbyService {
     const currentUser = this.authService.getCurrentUserEmail();
     this.maxUsers = maxUsers;
     if(!currentUser) return;
-    const newUser = new User(0 , '', '', currentUser, 1, 0);
+    const newUser = new User(0 , '', '', currentUser, true, 0);
     this.lobby.set({
       game,
       users: [newUser]
