@@ -21,12 +21,12 @@
       <p class="greeting">Hello, {{getCurrentUserEmail()}}</p>
       <div class="drawer" [ngClass]="{open: draweropen}">
         <div class="drawer-tab"  (click)="draweropen = !draweropen">
-          Lobby MatchMakr My
+          Lobby My
         </div>
         <ng-container *ngIf="lobbyService.lobby() as lobby">
           <p id="current-game">Game: {{lobby.game.name}}</p>
-          <p *ngFor="let user of lobby.users;let i = index">Player{{ i + 1 }}: {{user.email}}</p>
-          <button>Search For Match!</button>
+          <p *ngFor="let user of lobby.users;let i = index">Lobby Player {{ i + 1 }}: {{user.email}}</p>
+          <button id="match-button">Search For Match!</button>
         </ng-container>
       </div>
       </ng-template>

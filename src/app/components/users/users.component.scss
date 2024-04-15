@@ -32,3 +32,8 @@
   width: 50px;
 }
 
+button[disabled] {
+  opacity: .7;
+  cursor: not-allowed;
+  background-color: #555555 !important;
+}

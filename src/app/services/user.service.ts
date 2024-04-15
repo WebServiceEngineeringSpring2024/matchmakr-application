@@ -11,6 +11,9 @@ import {UserFriend} from "../models/friend";
 })
 
 export class UserService extends BaseService{
+  getClosest(email: string): Observable<User[]> {
+    return this?.httpClient?.get<User[]>(`${this.baseUrl}/lobbies/matchUser/${email}`) || new Observable<User[]>();
+  }
 
   // NOTE: Angular HTTP module always returns an Observable, which must be subscribed to or else nothing will happen.
   // Returns a list of all games

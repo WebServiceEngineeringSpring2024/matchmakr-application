@@ -26,6 +26,13 @@ export class LobbyService {
     lobby.users.push(user);
     this.lobby.set(lobby);
   }
+
+  public hasUser(user: User): boolean {
+    const lobby = this.lobby();
+    if (!lobby) return false;
+    return lobby.users?.filter((lobbyUser: User) => lobbyUser.id === user.id)?.length > 0;
+  }
+
   public createLobby(game: Game, maxUsers: number){
     const currentUser = this.authService.getCurrentUserEmail();
     this.maxUsers = maxUsers;

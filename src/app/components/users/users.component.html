@@ -1,4 +1,22 @@
-<h2 mat-subheader>Currently Online Users Looking For Game</h2>
+<h1>Users Looking for Game that clostest match your personality: </h1>
+<ng-container *ngIf="closestUsers | async as closestUsers">
+  <div class="card-grid">
+    <mat-card class="card" *ngFor="let closestUser of closestUsers">
+      <mat-card-header>
+        <mat-card-title class="username">User Name: {{closestUser.userName}}</mat-card-title>
+        <div class="logo-container">
+          <img src="assets/images/logohd-toolbar.png" alt="logo" class="logo">
+        </div>
+      </mat-card-header>
+      <mat-card-content>Personality Score: {{closestUser.personality}} </mat-card-content>
+      <mat-card-footer>
+        <button class="grid-button" (click)="addToExistingLobby(closestUser)" [disabled]="lass.hasUser(closestUser)">Add To My Lobby</button>
+        <button class="grid-button">Add Friend</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</ng-container>
+<h2 mat-subheader>All Currently Online Users</h2>
 <mat-form-field appearance="fill">
   <mat-label>Filter Users</mat-label>
   <input type="text" [(ngModel)]="search" matInput placeholder="Filter Users">
@@ -13,9 +31,9 @@
           <img src="assets/images/logohd-toolbar.png" alt="logo" class="logo">
         </div>
       </mat-card-header>
-      <mat-card-content>Personality Type: {{user.personality}} </mat-card-content>
+      <mat-card-content>Personality Score: {{user.personality}} </mat-card-content>
       <mat-card-footer>
-        <button class="grid-button" (click)="addToExistingLobby(user)">Add To My Lobby</button>
+        <button class="grid-button" (click)="addToExistingLobby(user)" [disabled]="lass.hasUser(user)">Add To My Lobby</button>
         <button class="grid-button">Add Friend</button>
       </mat-card-footer>
     </mat-card>
