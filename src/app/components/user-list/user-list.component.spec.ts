@@ -14,19 +14,19 @@ describe('UserListComponent', () => {
       imports: [UserListComponent, HttpClientTestingModule, BrowserAnimationsModule]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(UserListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should navigate upon clicking a user', () => {
-    component.users.push(new User(2, "vsinclare1", "", "", 0, 1), new User(1, "vsinclaire1", "", "", 1, 1))
+    component.users.push(new User(2, "vsinclare1", "", "", true, 1), new User(1, "vsinclaire1", "", "", true, 1))
     expect(component.ViewProfile('vsinclaire1')).toBeTrue();
   })
 
@@ -39,7 +39,7 @@ describe('UserListComponent', () => {
   })
 
   it('should update filteredUsers with those found in a valid search', () => {
-    component.users.push(new User(2, "vsinclare1", "", "", 0, 1), new User(1, "vsinclaire1", "", "", 1, 1))
+    component.users.push(new User(2, "vsinclare1", "", "", true, 1), new User(1, "vsinclaire1", "", "", true, 1))
     expect(component.Submit('vs')).toBeTrue();
   })
 });
