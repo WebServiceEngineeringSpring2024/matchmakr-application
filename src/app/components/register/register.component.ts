@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Usercredentials} from "../../models/usercredentials";
-import {UserRegister} from "../../models/userregister.model";
-import {MatError} from "@angular/material/form-field";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Usercredentials } from "../../models/usercredentials";
+import { UserRegister } from "../../models/userregister.model";
+import { MatError } from "@angular/material/form-field";
 
 @Component({
   selector: 'app-register',
@@ -19,10 +19,10 @@ export class RegisterComponent {
   registerForm: FormGroup;
   constructor(private as: AuthService, private router: Router) {
     this.errorMsg = "";
-    this.registerForm = new FormGroup( {
-      email: new FormControl( '',[Validators.required, Validators.email]),
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
       userName: new FormControl('', Validators.required),
-      password: new FormControl( '', Validators.required),
+      password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required)
     });
   }

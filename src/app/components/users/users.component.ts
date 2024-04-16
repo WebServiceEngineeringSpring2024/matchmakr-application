@@ -59,16 +59,37 @@ export class UsersComponent implements OnInit {
   );
 
   addToExistingLobby(friend: Friendview){
-    // verify that user being added is in the list of friends
-    for (let h = 0; h < this.friends.length; h++) {
-      if (this.friends[h].id == friend.id) {
-        // verify that the user being added does actually exist
-        this.as.getUserByID(friend.id).subscribe((value: User) => {
-          this.lass.addUser(value);
-        });
-        return;
+    // null guard
+    if (this.friends) {
+      // verify that user being added is in the list of friends
+      for (let h = 0; h < this.friends.length; h++) {
+        if (this.friends[h].id == friend.id) {
+          // verify that the user being added does actually exist
+          this.as.getUserByID(friend.id).subscribe((value: User) => {
+            this.lass.addUser(value);
+          });
+          return;
+        }
       }
     }
+    // user has no friends and/or the user being added is recommended based on personality
+    // check closest users to see if this friend is one of them
+    this.closestUsers?.subscribe({
+      next: (users) => {
+        for (let mv = 0; mv < users.length; mv++) {
+          if (friend.id == users[mv].id) {
+            // user found, add them
+            this.as.getUserByID(friend.id).subscribe((value: User) => {
+              this.lass.addUser(value);
+            });
+            return;
+          }
+        }
+      },
+      error: (err) => {
+        console.log("Error finding closest users");
+      }
+    })
   }
 
 
@@ -114,10 +135,12 @@ export class UsersComponent implements OnInit {
     (event.target as HTMLButtonElement).disabled = true;
     (event.target as HTMLButtonElement).textContent = "Sent...";
     // verify that user being added is not in the list of friends
-    for (let h = 0; h < this.friends.length; h++) {
-      if (this.friends[h].id == id) {
-        alert("You are already friends with them.");
-        return;
+    if (this.friends) {
+      for (let h = 0; h < this.friends.length; h++) {
+        if (this.friends[h].id == id) {
+          alert("You are already friends with them.");
+          return;
+        }
       }
     }
 
