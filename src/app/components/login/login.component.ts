@@ -8,26 +8,29 @@ import {MatFormField} from "@angular/material/form-field";
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    MatToolbar,
-    MatCard,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButton
-  ],
+    imports: [
+        MatToolbar,
+        MatCard,
+        MatCardTitle,
+        MatCardContent,
+        MatFormField,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButton,
+        NgIf
+    ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   errorMsg: string;
   loginForm: FormGroup;
+  loginFailed: boolean = false;
 
 
   constructor(private as: AuthService, private router: Router) {
@@ -44,15 +47,25 @@ export class LoginComponent {
 
   SubmitLogin() {
     let userCred = this.loginForm.getRawValue() as Usercredentials;
-    this.as.login(userCred).subscribe((data) => {
-      if (data) {
-        this.errorMsg = "Login successful!";
-        this.router.navigate(['games']);
-      }
-      else {
-        this.errorMsg = "Invalid username/password.";
-        document.getElementById('email',)
-      }
-    });
+    this.as.login(userCred)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data) {
+            console.log('data', data);
+            this.errorMsg = "Login successful!";
+            this.router.navigate(['games']);
+          }
+          else {
+            console.log('err', data);
+            this.loginFailed = true;
+            this.errorMsg = "Invalid username/password.";
+            document.getElementById('email',)
+          }
+        },
+        error: (err) => {
+          if (err.statusCode === 401) alert('Invalid username/password!');
+        }
+      })
   }
 }

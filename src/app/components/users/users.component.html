@@ -1,7 +1,7 @@
 <h2>Users Looking for Game that closest match your personality: </h2>
 <ng-container *ngIf="closestUsers | async as closestUsers">
   <div class="card-grid">
-    <mat-card class="card" *ngFor="let closestUser of closestUsers">
+    <mat-card class="card" *ngFor="let closestUser of closestUsers | slice:0:maxUsers">
       <mat-card-header>
         <mat-card-title class="username">User Name: {{closestUser.userName}}</mat-card-title>
         <div class="logo-container">

@@ -1,52 +1,69 @@
-<h1>Behavior Test</h1>
-<p >Before you can use MATCHMAKR, please answer these questions so we know you are a real person.</p>
-<form (ngSubmit)="submitForm()" #myForm="ngForm">
-  <p >Trash talking is just a normal part of gameplay.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q1data" [(ngModel)]="formData.q1data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >You enjoy learning about new techniques to get a competitive edge over others.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q2data" [(ngModel)]="formData.q2data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >Seeing other people cry can make you feel like you want to cry too.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q3data" [(ngModel)]="formData.q3data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >You are more inclined to follow your head than your heart.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q4data" [(ngModel)]="formData.q4data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >You rarely worry about whether you make a good impression on other players you meet.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q5data" [(ngModel)]="formData.q5data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >You enjoy participating in group activities that require teamwork.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q6data" [(ngModel)]="formData.q6data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >You enjoy watching people argue, as long as you're not a part of the argument.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q7data" [(ngModel)]="formData.q7data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >If a player on your team is playing badly, you give advice and help them get better.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q8data" [(ngModel)]="formData.q8data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p >If a player on your team is playing badly, you give advice and help them get better.</p>
-  <div *ngFor="let option of options">
-    <input type="radio" id="{{ option }}" name="q9data" [(ngModel)]="formData.q9data" [value]="option" required/>
-    <label for="{{ option }}">{{ option }}</label>
-  </div>
-  <p style="color: red;">{{ errorMsg }}</p>
-  <button type="submit">Submit</button>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Behavior Test</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Before you can use MATCHMAKR, please answer these questions so we know you are a real person.</p>
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <mat-card>
+        <mat-card-content>
+          <p>1: Trash talking is just a normal part of gameplay.</p>
+          <mat-radio-group [(ngModel)]="formData.q1data" name="q1data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
 
-</form>
+          <p>2: You enjoy learning about new techniques to get a competitive edge over others.</p>
+          <mat-radio-group [(ngModel)]="formData.q2data" name="q2data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+          <p>3: Seeing other people cry can make you feel like you want to cry too.</p>
+          <mat-radio-group [(ngModel)]="formData.q3data" name="q3data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option"> {{option}}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+
+          <p>4: You are more inclined to follow your head than your heart.</p>
+          <mat-radio-group [(ngModel)]="formData.q4data" name="q4data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+
+          <p>5: You rarely worry about whether you make a good impression on other players you meet.</p>
+          <mat-radio-group [(ngModel)]="formData.q5data" name="q5data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+
+          <p>6: You enjoy participating in group activities that require teamwork.</p>
+          <mat-radio-group [(ngModel)]="formData.q6data" name="q6data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+
+          <p>7: You enjoy watching people argue, as long as you're not a part of the argument.</p>
+          <mat-radio-group [(ngModel)]="formData.q7data" name="q7data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+
+          <p>8: If a player on your team is playing badly, you give advice and help them get better.</p>
+          <mat-radio-group [(ngModel)]="formData.q8data" name="q8data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <hr>
+          <p>9: If a player on your team is playing badly, you give advice and help them get better.</p>
+          <mat-radio-group [(ngModel)]="formData.q9data" name="q9data" required class="vertical-radio-group">
+            <mat-radio-button class="vertical-radio" *ngFor="let option of options" [value]="option">{{ option }}</mat-radio-button>
+          </mat-radio-group>
+          <p style="color: red;">{{ errorMsg }}</p>
+        </mat-card-content>
+      </mat-card>
+      <div class="button-container">
+        <button mat-button type="submit" class="submit-button">Submit</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+

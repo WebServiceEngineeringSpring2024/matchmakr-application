@@ -8,7 +8,7 @@ import {
   MatCardSubtitle,
   MatCardTitle
 } from "@angular/material/card";
-import {combineLatest, debounceTime, map, Observable} from "rxjs";
+import {combineLatest, debounceTime, map, Observable, ReplaySubject} from "rxjs";
 import {toObservable} from "@angular/core/rxjs-interop";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user";
@@ -42,6 +42,8 @@ export class UsersComponent implements OnInit {
   private as = inject(AuthService);
   private router = inject(Router);
   buttonClicked: boolean = false;
+
+  public maxUsers: number = 0;
   public closestUsers?: Observable<User[]>;
   public friends: Friendview[] = [];
   currentUserId: number = 0;
@@ -80,6 +82,7 @@ export class UsersComponent implements OnInit {
     if (!curr) {
       return;
     }
+    this.maxUsers = this.lass.maxUsers;
     // Get the ID of the current user,
     this.as.getUserByEmail(curr).subscribe((currUser: User) => {
       this.currentUserId = currUser.id;

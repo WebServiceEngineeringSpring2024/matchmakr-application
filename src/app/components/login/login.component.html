@@ -25,6 +25,7 @@
       autocomplete="new-password"
       type="password"/>
   </div>
+  <div *ngIf="loginFailed" style="color: red; text-align: center">Incorrect Email or Password!</div>
   <button mat-raised-button type="submit">Login</button>
   <button  mat-raised-button (click)="goToRegister()">Register</button>
 </form>

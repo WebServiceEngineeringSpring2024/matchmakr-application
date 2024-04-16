@@ -17,7 +17,9 @@
         <p>Game Description: {{game.description}}</p>
         <p> Max Lobby Size: {{game.maxPlayers}}</p>
       </mat-card-content>
-      <button class="grid-button" (click)="addToLobby(game, game.maxPlayers)">Make Lobby</button>
+      <div class="card-footer">
+        <button class="grid-button" (click)="addToLobby(game, game.maxPlayers)">Make Lobby</button>
+      </div>
     </mat-card>
   </div>
 </ng-container>
