@@ -4,13 +4,16 @@ import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PersonalityService } from '../../services/personality.service';
 import { AuthService } from '../../services/auth.service';
+import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatRadioButton, MatRadioGroup, MatCardContent, MatCardHeader, MatCard, MatCardTitle, MatButton],
   templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.css'
+  styleUrl: './quiz.component.scss'
 })
 export class QuizComponent {
   formData = {

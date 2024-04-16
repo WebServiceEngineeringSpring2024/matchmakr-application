@@ -1,11 +1,12 @@
-import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import {Injectable, inject, PLATFORM_ID, Injector} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable, Subject, catchError } from 'rxjs';
+import {Observable, Subject, catchError, of, tap, BehaviorSubject} from 'rxjs';
 import { map } from 'rxjs';
 import { Usercredentials } from '../models/usercredentials';
 import { User } from '../models/user';
 import { isPlatformBrowser } from '@angular/common';
 import { PersonalityService } from './personality.service';
+import {LobbyService} from "./lobby.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
 
   private baseURL = "http://localhost:8080/users";
   private platformID: any;
-  constructor(private httpClient: HttpClient, private ps: PersonalityService)
+  constructor(private httpClient: HttpClient, private ps: PersonalityService, private injector: Injector)
   {
     this.platformID = inject(PLATFORM_ID);
   }
@@ -65,6 +66,7 @@ export class AuthService {
   signOut(): boolean | void {
     if (isPlatformBrowser(this.platformID)) {
       // get email from local,
+      this.injector.get(LobbyService).lobby.set(null);
       let token = localStorage.getItem("e");
       let email = this.decr(token ? token : '');
       if (!email) {
@@ -148,61 +150,51 @@ export class AuthService {
   // Returns a status for a login attempt
   login(user: Usercredentials): Observable<boolean> {
     console.log("Login called: Connecting to " + this.baseURL);
-    const result = new Subject<boolean>();
-    if (this.httpClient) {
+    const returnValue = new Subject<boolean>();
+    if (!this.httpClient) {
+      returnValue.next(false);
+      return returnValue.asObservable();
+    }
       // email and password are passed as a json object to backend
       this.httpClient.post<string>(`${this.baseURL}/login`, {
         "email": user.email,
         "password": user.password
-      }).subscribe((data) => {
-        console.log(data);
-        if (!Number.isNaN(parseInt(data))) {
+      }).subscribe({
+        next: (data) => {
+
           //success, check for a personality
-          let subscription = this.ps.getPersonalityData(parseInt(data)).subscribe({
+          this.ps.getPersonalityData(parseInt(data)).subscribe({
             next: (dta) => {
               // personality found
-
               if (isPlatformBrowser(this.platformID)) {
                 const rb = new Uint32Array(1);
                 window.crypto.getRandomValues(rb);
                 let rnd = Math.round((rb[0] / (0xffffffff + 1)) * 7 + 1);
-                localStorage.setItem("session", rnd+(user.email.length * 1274321).toString());
+                localStorage.setItem("session", rnd + (user.email.length * 1274321).toString());
                 let encrypted = this.encr(user.email);
                 localStorage.setItem("e", encrypted);
+                returnValue.next(true);
               }
-              result.next(true);
-              result.complete();
             },
             error: (err) => {
+              console.log(err);
               // personality not found
-
               if (isPlatformBrowser(this.platformID)) {
-                localStorage.setItem("session", "0"+(user.email.length * 1274321).toString());
+                localStorage.setItem("session", "0" + (user.email.length * 1274321).toString());
                 let encrypted = this.encr(user.email);
                 localStorage.setItem("e", encrypted);
               }
-              result.next(true);
-              result.complete();
             }
           })
-
-          return result.asObservable();
-        }
-        else {
-          //error
-          result.next(false);
-          result.complete();
-          return result.asObservable();
+        },
+        error: (err) => {
+          console.log('auth', err)
+          returnValue.next(false);
         }
       });
+      return returnValue.asObservable();
     }
-    else {
-      console.log("HTTP Client is null");
-      result.next(false);
-      result.complete();
-    }
-    return result.asObservable();
-  }
+
   // Returns a status for a register attempt
   register(user: User): Observable<boolean> {
     console.log("Register called: Connecting to " + this.baseURL);

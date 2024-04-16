@@ -1,44 +1,58 @@
-<h1>User</h1>
-<p id="error">{{errorMsg}}</p>
-<div *ngIf="username">
-  <img style="background-color: black;" src="../../../assets/images/profile.png"/>
-  <p>{{username}}</p>
-  <p>{{online}}</p>
-  <h2>{{username}}'s Friends</h2>
-  <p>{{friendsMsg}}</p>
-  <div *ngFor="let friend of friendsList">
-    {{ friend.username }}
-  </div>
-  <div *ngIf="showAdditional; else friendOption">
-    <h2>Personal info.</h2>
-    <p>ID: {{id}}</p>
-    <p>Email: {{email}}</p>
-    <p>{{personality}}</p>
-  </div>
-  <ng-template #friendOption>
-    <div *ngIf="friendStatus">
-      <div *ngIf="friendStatus == 'sent'">
-        <p>Friend request sent</p>
-      </div>
-      <div *ngIf="friendStatus == 'accepted'">
-        <form>
-          <button type="submit" (click)="removeFriend()">Remove Friend</button>
-        </form>
-      </div>
-      <div *ngIf="friendStatus == 'none'">
-        <form>
-          <button type="submit" (click)="sendFriendRequest()">Add Friend</button>
-        </form>
-      </div>
-      <div *ngIf="friendStatus == 'pending'">
-        <p>They sent you a friend request! </p>
-        <form>
-          <button type="submit" (click)="acceptFriendRequest()">Accept Friend</button>
-        </form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Username: {{username}}</mat-card-title>
+    <img class="profile-img" src="../../../assets/images/profile.png"/>
+    <mat-card-subtitle *ngIf="errorMsg" id="error">{{errorMsg}}</mat-card-subtitle>
+  </mat-card-header>
+  <hr>
+  <mat-card-content *ngIf="username">
+    <div class="profile-info">
+      <mat-card>
+      <p style="color: green">Status: {{online}}</p>
+      </mat-card>
+      <hr>
+    </div>
+    <mat-card>
+    <div class="friend-list">
+      <h2>Friends List:</h2>
+      <p>{{friendsMsg}}</p>
+      <div *ngFor="let friend of friendsList">
+        Username: {{ friend.username }}
       </div>
     </div>
-  </ng-template>
-</div>
-
-
-<ng-template #notfound></ng-template>
+    </mat-card>
+    <hr>
+    <mat-card>
+    <div *ngIf="showAdditional; else friendOption">
+      <h2>Personal info:</h2>
+      <p>ID: {{id}}</p>
+      <p>Email: {{email}}</p>
+      <p>{{personality}}</p>
+    </div>
+    </mat-card>
+    <hr>
+    <ng-template #friendOption>
+      <div *ngIf="friendStatus">
+        <div *ngIf="friendStatus == 'sent'">
+          <p>Friend request sent</p>
+        </div>
+        <div *ngIf="friendStatus == 'accepted'">
+          <form>
+            <button mat-button color="warn" (click)="removeFriend()">Remove Friend</button>
+          </form>
+        </div>
+        <div *ngIf="friendStatus == 'none'">
+          <form>
+            <button mat-button color="primary" (click)="sendFriendRequest()">Add Friend</button>
+          </form>
+        </div>
+        <div *ngIf="friendStatus == 'pending'">
+          <p>They sent you a friend request!</p>
+          <form>
+            <button mat-button color="primary" (click)="acceptFriendRequest()">Accept Friend</button>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

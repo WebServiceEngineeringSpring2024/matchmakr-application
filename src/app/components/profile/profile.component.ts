@@ -8,11 +8,12 @@ import { User } from '../../models/user';
 import { NgIf } from '@angular/common';
 import { PersonalityService } from '../../services/personality.service';
 import { Personality } from '../../models/personality';
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [NgIf, NgForOf],
+  imports: [NgIf, NgForOf, MatCardHeader, MatCard, MatCardTitle, MatCardSubtitle, MatCardContent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
