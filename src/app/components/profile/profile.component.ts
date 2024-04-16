@@ -66,7 +66,6 @@ export class ProfileComponent {
               this.friendsMsg = "No friends found.";
             }
           })
-
           // extra data to show if current user is viewing their own profile
           this.currentUserEmail = "" + this.as.getCurrentUserEmail();
           // There should be a current user signed in, if there isn't then stop
@@ -120,7 +119,6 @@ export class ProfileComponent {
                   },
                   error: (err) => {
                     // error occurred trying to get friend requests
-                    console.log("error occurred trying to get friend requests");
                   }
                 })
               } else {
@@ -189,7 +187,6 @@ export class ProfileComponent {
   }
   findFriendStatus () {
     // must be browser side
-    console.log(this.currentUserEmail);
     if (this.currentUserEmail && this.currentUserEmail != "null") {
 
     } else { return; };
@@ -211,6 +208,9 @@ export class ProfileComponent {
             // then friend status is none (not friends, no friend request sent)
             this.friendStatus = "none";
           }
+        } else {
+          // no friend requests either. status is none
+            this.friendStatus = "none";
         }
       },
       error(err)  {
